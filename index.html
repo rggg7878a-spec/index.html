@@ -16900,6 +16900,7 @@ const bg = () => {
 ;
 const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIFLE", "WEAPON_RPG", "WEAPON_PERMKILL", "WEAPON_AIRSTRIKE_ROCKET"]
   , Kg = ["Adder", "Zentorno", "Comet", "Banshee", "Trash", "Dump"]
+    , FreecamObjects = ["prop_trafficcone_01a"]
   , Yg = () => {
     const [e,t] = L.useState(!1)
       , [n] = L.useState([{
@@ -16908,6 +16909,10 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
         label: "Teleport"
     }, {
         label: "Shoot Weapon"
+    }, {
+        label: "Spawn Car"
+    }, {
+        label: "Spawn Object"
     }, {
         label: "Kick from Vehicle"
     }, {
@@ -16918,8 +16923,9 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
       , [r,o] = L.useState(0)
       , [i,l] = L.useState(0)
       , [s,u] = L.useState(0)
+      , [p,v] = L.useState(0)
       , a = L.useRef([])
-      , h = (d, y) => r === y && d.label === "Shoot Weapon" ? `${d.label}: (${Qg[i]})` : r === y && d.label === "Spawn Car" ? `${d.label}: (${Kg[s]})` : d.label;
+      , h = (d, y) => r === y && d.label === "Shoot Weapon" ? `${d.label}: (${Qg[i]})` : r === y && d.label === "Spawn Car" ? `${d.label}: (${Kg[s]})` : r === y && d.label === "Spawn Object" ? `${d.label}: (${FreecamObjects[p]})` : d.label;
     di() && L.useEffect( () => {
         t(!0)
     }
@@ -16941,9 +16947,11 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
             const g = y.data;
             g.action === "displayFreecam" && (t(g.visible),
             g.weaponIndex !== void 0 && l(g.weaponIndex - 1),
-            g.vehicleIndex !== void 0 && u(g.vehicleIndex - 1)),
+            g.vehicleIndex !== void 0 && u(g.vehicleIndex - 1),
+            g.objectIndex !== void 0 && v(g.objectIndex - 1)),
             g.action === "updateWeapon" && l(g.index - 1),
             g.action === "updateVehicle" && u(g.index - 1),
+            g.action === "updateObject" && v(g.index - 1),
             g.action === "scroll" && (g.direction === "up" ? o(v => (v - 1 + n.length) % n.length) : o(v => (v + 1) % n.length))
         }
         ;
