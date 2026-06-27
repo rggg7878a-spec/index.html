@@ -2143,36 +2143,36 @@
         }
         .NotificationsWrapper {
             position: fixed;
-            right: 1.15vw;
-            bottom: 1.15vw;
+            right: 1vw;
+            bottom: 1vw;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: .35vw;
+            gap: .45vw;
             z-index: 9999;
             pointer-events: none;
             background: transparent !important;
         }
         .Notification {
-            --accent: rgb(205, 46, 46);
-            width: clamp(190px, 13.5vw, 270px);
-            min-height: 30px;
-            padding: 7px 10px;
+            --accent: rgb(86, 173, 255);
+            width: clamp(220px, 15.5vw, 310px);
+            min-height: 40px;
+            padding: 9px 12px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             position: relative;
             pointer-events: none;
             overflow: hidden;
-            color: #ffffff;
+            color: #f4f7fb;
             font-family: "Poppins", sans-serif;
-            background: linear-gradient(145deg, rgba(18, 18, 18, 0.96), rgba(29, 29, 29, 0.94));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            box-shadow: 0 .4vw 1.4vw rgba(0, 0, 0, 0.45);
+            background: linear-gradient(160deg, rgba(16, 20, 28, 0.96), rgba(10, 13, 18, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 12px;
+            box-shadow: 0 .5vw 1.6vw rgba(0, 0, 0, 0.36);
             opacity: 0;
-            transform: translateX(12px) scale(0.98);
-            transition: transform 0.2s ease, opacity 0.2s ease;
+            transform: translateY(6px) scale(0.99);
+            transition: transform 0.22s ease, opacity 0.22s ease;
             margin-top: 0;
         }
         .Notification::before {
@@ -2180,7 +2180,7 @@
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: transparent;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.00));
             z-index: 0;
             pointer-events: none;
         }
@@ -2189,64 +2189,65 @@
         }
         .Notification.enter {
             opacity: 1;
-            transform: translateX(0) scale(1);
+            transform: translateY(0) scale(1);
         }
         .Notification.exit {
             opacity: 0;
-            transform: translateX(8px) scale(0.98);
+            transform: translateY(5px) scale(0.99);
             transition: transform 0.16s ease, opacity 0.16s ease;
         }
         .Notification.success {
-            --accent: rgb(205, 46, 46);
+            --accent: rgb(71, 185, 125);
         }
         .Notification.error {
-            --accent: rgb(205, 46, 46);
+            --accent: rgb(219, 89, 89);
         }
         .Notification.info {
-            --accent: rgb(205, 46, 46);
+            --accent: rgb(86, 173, 255);
         }
         .NotificationMessage {
             position: relative;
             z-index: 2;
             width: 100%;
-            font-size: 13px;
-            font-weight: 600;
-            line-height: 1.2;
-            color: rgba(245, 245, 245, 0.96);
-            text-align: right;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.35;
+            color: rgba(240, 245, 255, 0.95);
+            text-align: left;
             white-space: normal;
             overflow: visible;
             text-overflow: clip;
             word-break: break-word;
-            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.65);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+            padding-right: 6px;
         }
         .NotificationCount {
             position: absolute;
-            top: -0.32vw;
-            left: -0.32vw;
-            min-width: 1.3vw;
-            height: 1.3vw;
-            padding: 0 .25vw;
-            border-radius: .75vw;
+            top: 8px;
+            right: 9px;
+            min-width: 22px;
+            height: 18px;
+            padding: 0 6px;
+            border-radius: 999px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: .62vw;
-            font-weight: 700;
-            color: #fff;
-            background: linear-gradient(135deg, #ff4f4f, #be1e1e);
-            border: 1px solid rgba(255, 255, 255, 0.28);
-            box-shadow: 0 .2vw .7vw rgba(0, 0, 0, 0.45);
+            font-size: 10px;
+            font-weight: 600;
+            color: #eaf2ff;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 .2vw .6vw rgba(0, 0, 0, 0.3);
             z-index: 4;
         }
         .NotificationProgress {
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
             height: 2px;
             border-radius: 0;
-            background: linear-gradient(90deg, rgba(245, 71, 71, 0.98), rgba(160, 24, 24, 0.98));
+            background: linear-gradient(90deg, var(--accent), rgba(255, 255, 255, 0.88));
             animation: notificationProgress linear forwards;
             transform-origin: left center;
             z-index: 3;
@@ -2268,16 +2269,16 @@
                 padding: 0;
             }
             .Notification {
-                width: min(70vw, 260px);
-                min-height: 30px;
-                padding: 7px 9px;
+                width: min(74vw, 286px);
+                min-height: 36px;
+                padding: 8px 10px;
             }
             .NotificationMessage {
                 font-size: 12px;
             }
             .NotificationCount {
-                min-width: 18px;
-                height: 18px;
+                min-width: 20px;
+                height: 17px;
                 border-radius: 999px;
                 font-size: 10px;
             }
@@ -2331,63 +2332,70 @@
             display: flex;
             width: 100%;
             height: 100%;
-            background-color: #0009;
+            background-color: rgba(6, 9, 13, 0.58);
         }
         .InputWrapper {
             position: absolute;
             left: 50%;
-            bottom: 6vw;
+            bottom: 4.6vw;
             transform: translateX(-50%);
-            width: 620px;
-            height: 52px;
-            background: rgba(18, 18, 18, 0.85);
-            border-radius: 0;
+            width: min(760px, 78vw);
+            min-height: 58px;
+            background: linear-gradient(160deg, rgba(13, 17, 23, 0.97), rgba(18, 23, 31, 0.96));
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.42);
             overflow: hidden;
-            font-family: Montserrat;
+            font-family: "Poppins", sans-serif;
         }
         .InputWrapper .Header {
             display: flex;
             align-items: center;
-            height: 21px;
-            padding: 0 14px 0 9px;
-            gap: 10px;
-            color: #eaeaea;
-            font-size: 13px;
-            font-weight: 400;
-            background: rgba(18, 18, 18, 0.85);
+            min-height: 26px;
+            padding: 0 12px;
+            gap: 8px;
+            color: #ecf2fb;
+            font-size: 12px;
+            font-weight: 500;
+            background: rgba(8, 11, 16, 0.72);
             position: relative;
         }
         .InputWrapper .Header::after {
             content: "";
             position: absolute;
-            left: 5px;
+            left: 10px;
             bottom: 0;
-            width: calc(100% - 13px);
+            width: calc(100% - 20px);
             height: 1px;
-            background: rgb(var(--menu-color));
+            background: rgba(var(--menu-color), 0.8);
             border-radius: 0.1vw;
         }
         .InputWrapper .Header img {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
         .InputWrapper .Header .Line {
             width: 1px;
-            height: 16px;
-            background: #ffffff30;
+            height: 13px;
+            background: rgba(255, 255, 255, 0.22);
         }
         .InputWrapper .Body {
             display: flex;
             align-items: center;
-            height: 28px;
-            padding: 0 14px;
-            color: #bfc6d4;
+            min-height: 32px;
+            padding: 6px 12px 8px;
+            color: rgba(220, 231, 248, 0.9);
             font-size: 13px;
         }
         .InputWrapper .Body .InsideCon {
             display: flex;
             align-items: center;
             width: 100%;
+            min-height: 26px;
+            border-radius: 7px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0 8px;
         }
         .InputWrapper .Body span {
             display: inline-flex;
@@ -2413,16 +2421,16 @@
             display: flex;
             right: 1.1vw;
             top: 2.6vw;
-            width: clamp(200px, 12.5vw, 260px);
+            width: clamp(170px, 11.2vw, 220px);
             justify-content: center;
             align-items: center;
             flex-direction: column;
             font-family: "Poppins", sans-serif;
-            border-radius: 6px;
+            border-radius: 9px;
             overflow: hidden;
-            background: rgba(5, 7, 11, 0.78);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+            background: linear-gradient(165deg, rgba(12, 17, 24, 0.96), rgba(8, 12, 18, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
         }
         .KBLWrapper .Header {
             position: relative;
@@ -2433,26 +2441,27 @@
             align-items: center;
             flex-direction: row;
             gap: 4px;
-            padding: 4px 12px;
-            border-bottom: 1px solid rgba(190, 42, 42, 0.85);
-            background: rgba(6, 8, 13, 0.96);
+            padding: 4px 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+            background: rgba(7, 11, 17, 0.88);
         }
         .KBLWrapper .Header::before {
             content: none;
         }
         .KBLWrapper .Header .Icon {
-            display: none;
+            display: flex;
         }
         .KBLWrapper .Header .Icon svg {
-            display: none !important;
+            display: block !important;
+            color: rgba(var(--menu-color), 1);
         }
         .KBLWrapper .Header span {
             margin-left: 0;
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 10px;
+            font-weight: 600;
             line-height: 1;
-            color: #f4f7ff;
-            letter-spacing: 0;
+            color: #edf3fe;
+            letter-spacing: .02em;
         }
         .KBLWrapper .Keybinds {
             position: relative;
@@ -2462,20 +2471,25 @@
             justify-content: flex-start;
             align-items: stretch;
             flex-direction: column;
-            gap: 0;
-            background: rgba(5, 7, 11, 0.72);
-            padding: 8px 12px 10px;
+            gap: 1px;
+            background: transparent;
+            padding: 5px 6px 6px;
         }
         .KBLWrapper .Keybinds .Keybind {
             position: relative;
             display: flex;
             width: 100%;
-            min-height: 27px;
+            min-height: 20px;
             justify-content: space-between;
             align-items: center;
-            gap: 6px;
-            padding: 0;
-            border-bottom: 0;
+            gap: 5px;
+            padding: 0 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 0;
+            background: transparent;
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
         }
         .KBLWrapper .Keybinds .Keybind:last-child {
             border-bottom: 0;
@@ -2484,10 +2498,10 @@
             position: static;
             display: flex;
             min-width: 0;
-            font-size: 11px;
-            font-weight: 400;
+            font-size: 9px;
+            font-weight: 500;
             line-height: 1.15;
-            color: rgba(242, 242, 242, 0.95);
+            color: rgba(235, 242, 252, 0.94);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -2498,21 +2512,32 @@
             justify-content: flex-end;
             align-items: center;
             flex-direction: row;
-            gap: 4px;
+            gap: 2px;
             margin-left: auto;
             white-space: nowrap;
         }
         .KBLWrapper .Keybinds .Keybind .Elements span {
-            font-size: 11px;
+            font-size: 8px;
             font-weight: 400;
             line-height: 1;
-            color: rgba(242, 242, 242, 0.95);
+            color: rgba(223, 233, 245, 0.95);
         }
         .KBLWrapper .Keybinds .Keybind .Elements .KeyLabel {
-            color: rgba(242, 242, 242, 0.95) !important;
+            color: rgba(245, 250, 255, 0.98) !important;
+            background: rgba(var(--menu-color), 0.22);
+            border: 1px solid rgba(var(--menu-color), 0.5);
+            border-radius: 999px;
+            min-width: 18px;
+            height: 13px;
+            padding: 0 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            letter-spacing: .02em;
         }
         .KBLWrapper .Keybinds .Keybind .Elements .KeyState {
-            color: rgba(242, 242, 242, 0.78) !important;
+            color: rgba(210, 223, 239, 0.75) !important;
         }
         .Crosshair {
             position: absolute;
@@ -5065,11 +5090,11 @@ function $u(e, t) {
     }
 }
 function An(e, t, n, r, o, i) {
-    return e === null || e.nativeEvent !== i ? (e = {
+    return e === null || e.maxEvent !== i ? (e = {
         blockedOn: t,
         domEventName: n,
         eventSystemFlags: r,
-        nativeEvent: i,
+        maxEvent: i,
         targetContainers: [o]
     },
     t !== null && (t = Mr(t),
@@ -5128,9 +5153,9 @@ function ao(e) {
     if (e.blockedOn !== null)
         return !1;
     for (var t = e.targetContainers; 0 < t.length; ) {
-        var n = Nl(e.domEventName, e.eventSystemFlags, t[0], e.nativeEvent);
+        var n = Nl(e.domEventName, e.eventSystemFlags, t[0], e.maxEvent);
         if (n === null) {
-            n = e.nativeEvent;
+            n = e.maxEvent;
             var r = new n.constructor(n.type,n);
             kl = r,
             n.target.dispatchEvent(r),
@@ -5382,7 +5407,7 @@ function Fe(e) {
         this._reactName = n,
         this._targetInst = o,
         this.type = r,
-        this.nativeEvent = i,
+        this.maxEvent = i,
         this.target = l,
         this.currentTarget = null;
         for (var s in e)
@@ -5395,12 +5420,12 @@ function Fe(e) {
     return Z(t.prototype, {
         preventDefault: function() {
             this.defaultPrevented = !0;
-            var n = this.nativeEvent;
+            var n = this.maxEvent;
             n && (n.preventDefault ? n.preventDefault() : typeof n.returnValue != "unknown" && (n.returnValue = !1),
             this.isDefaultPrevented = Yr)
         },
         stopPropagation: function() {
-            var n = this.nativeEvent;
+            var n = this.maxEvent;
             n && (n.stopPropagation ? n.stopPropagation() : typeof n.cancelBubble != "unknown" && (n.cancelBubble = !0),
             this.isPropagationStopped = Yr)
         },
@@ -5518,7 +5543,7 @@ var zn = {
     Shift: "shiftKey"
 };
 function lh(e) {
-    var t = this.nativeEvent;
+    var t = this.maxEvent;
     return t.getModifierState ? t.getModifierState(e) : (e = ih[e]) ? !!t[e] : !1
 }
 function Ns() {
@@ -12312,7 +12337,7 @@ Me.version = "18.2.0-next-9e3b772b8-20220608";
 var Na = wc.exports;
 ul.createRoot = Na.createRoot,
 ul.hydrateRoot = Na.hydrateRoot;
-const di = () => !window.invokeNative
+const di = () => !window.invokemax
   , Sm = () => {}
   , km = (e, t) => {
     const n = $.exports.useRef(Sm);
@@ -16608,7 +16633,7 @@ const Vg = () => {
                                         children: "discord.gg/t101"
                                     }), x("span", {
                                         className: "PBuildText3",
-                                        children: "native"
+                                        children: "Jood"
                                     })]
                                 }), x("img", {
                                     className: "PFooterLogo",
