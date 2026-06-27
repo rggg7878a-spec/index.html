@@ -2143,22 +2143,21 @@
         }
         .NotificationsWrapper {
             position: fixed;
-            top: 120px;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 1.15vw;
+            bottom: 1.15vw;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 8px;
+            align-items: flex-end;
+            gap: .35vw;
             z-index: 9999;
             pointer-events: none;
             background: transparent !important;
         }
         .Notification {
             --accent: rgb(205, 46, 46);
-            width: clamp(230px, 16vw, 320px);
-            min-height: 36px;
-            padding: 9px 12px 8px;
+            width: clamp(190px, 13.5vw, 270px);
+            min-height: 30px;
+            padding: 7px 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2167,12 +2166,12 @@
             overflow: hidden;
             color: #ffffff;
             font-family: "Poppins", sans-serif;
-            background: #1b1b1b;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+            background: linear-gradient(145deg, rgba(18, 18, 18, 0.96), rgba(29, 29, 29, 0.94));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            box-shadow: 0 .4vw 1.4vw rgba(0, 0, 0, 0.45);
             opacity: 0;
-            transform: translateY(-8px);
+            transform: translateX(12px) scale(0.98);
             transition: transform 0.2s ease, opacity 0.2s ease;
             margin-top: 0;
         }
@@ -2190,11 +2189,11 @@
         }
         .Notification.enter {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0) scale(1);
         }
         .Notification.exit {
             opacity: 0;
-            transform: translateY(-6px);
+            transform: translateX(8px) scale(0.98);
             transition: transform 0.16s ease, opacity 0.16s ease;
         }
         .Notification.success {
@@ -2210,16 +2209,35 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 600;
             line-height: 1.2;
             color: rgba(245, 245, 245, 0.96);
-            text-align: center;
+            text-align: right;
             white-space: normal;
             overflow: visible;
             text-overflow: clip;
             word-break: break-word;
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.65);
+        }
+        .NotificationCount {
+            position: absolute;
+            top: -0.32vw;
+            left: -0.32vw;
+            min-width: 1.3vw;
+            height: 1.3vw;
+            padding: 0 .25vw;
+            border-radius: .75vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .62vw;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #ff4f4f, #be1e1e);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            box-shadow: 0 .2vw .7vw rgba(0, 0, 0, 0.45);
+            z-index: 4;
         }
         .NotificationProgress {
             position: absolute;
@@ -2244,19 +2262,24 @@
         }
         @media (max-width: 900px) {
             .NotificationsWrapper {
-                top: 120px;
-                left: 50%;
-                transform: translateX(-50%);
+                right: 10px;
+                bottom: 12px;
                 width: auto;
                 padding: 0;
             }
             .Notification {
-                width: min(92vw, 320px);
-                min-height: 34px;
-                padding: 8px 10px 7px;
+                width: min(70vw, 260px);
+                min-height: 30px;
+                padding: 7px 9px;
             }
             .NotificationMessage {
-                font-size: 13px;
+                font-size: 12px;
+            }
+            .NotificationCount {
+                min-width: 18px;
+                height: 18px;
+                border-radius: 999px;
+                font-size: 10px;
             }
         }
         @keyframes rainbowHue {
@@ -16188,6 +16211,9 @@ const Vg = () => {
       , [p,w] = L.useState("OSINTBypass")
       , [_,E] = L.useState("0%")
       , [k,O] = L.useState("0%")
+    , [menuPosX,setMenuPosX] = L.useState(20)
+    , [menuPosY,setMenuPosY] = L.useState(50)
+    , [menuScale,setMenuScale] = L.useState(1)
       , V = L.useRef([])
       , prevTabIndex = L.useRef(0);
     return di() && L.useEffect( () => {
@@ -16243,6 +16269,9 @@ const Vg = () => {
                 },
                 body: JSON.stringify(S.weapon || "WEAPON_APPISTOL")
             }),
+            S.action === "updateMenuLayout" && (typeof S.menuX == "number" && setMenuPosX(Math.max(0, Math.min(100, S.menuX))),
+            typeof S.menuY == "number" && setMenuPosY(Math.max(0, Math.min(100, S.menuY))),
+            typeof S.menuScale == "number" && setMenuScale(Math.max(.7, Math.min(1.5, S.menuScale)))),
             S.action === "updateElements" && (o(S.elements || []),
             typeof S.index == "number" ? l(S.index) : l(0),
             S.categories ? (h(S.categories),
@@ -16368,7 +16397,16 @@ const Vg = () => {
                 var K;
                 return U("div", {
                     className: "PWrapper",
-                    style: I,
+                    style: {
+                        ...I,
+                        left: `${menuPosX}%`,
+                        top: `${menuPosY}%`,
+                        bottom: "auto",
+                        marginTop: 0,
+                        marginBottom: 0,
+                        transform: `translate(0, -50%) scale(${menuScale})`,
+                        transformOrigin: "top left"
+                    },
                     children: [x("div", {
                         className: "PBanner",
                         children: x("img", {
@@ -16641,11 +16679,28 @@ let fc = 0;
 const Wg = () => {
     const [e,t] = L.useState([])
       , n = L.useCallback(o => {
-        fc++,
-        t(i => [...i, {
-            ...o,
-            id: fc
-        }])
+        const i = `${o.type || "info"}::${o.title || "Notification"}::${o.desc || ""}`;
+        t(l => {
+            const s = l.find(a => a.key === i);
+            if (s) {
+                const u = {
+                    ...s,
+                    count: (s.count || 1) + 1,
+                    duration: o.duration || s.duration || 4e3,
+                    rev: (s.rev || 0) + 1
+                };
+                return [...l.filter(a => a.key !== i), u]
+            }
+            return fc++,
+            [...l, {
+                ...o,
+                id: fc,
+                key: i,
+                count: 1,
+                rev: 0
+            }]
+        }
+        )
     }
     , [])
       , r = L.useCallback(o => {
@@ -16717,7 +16772,7 @@ const Wg = () => {
             s && s.removeEventListener("transitionend", u)
         }
     }
-    , [e.id, e.duration, t]);
+    , [e.id, e.duration, e.rev, t]);
     const l = (e.desc || e.title || "").toString();
     return U("div", {
         ref: n,
@@ -16728,6 +16783,9 @@ const Wg = () => {
             style: {
                 animationDuration: `${e.duration}ms`
             }
+        }), e.count > 1 && x("div", {
+            className: "NotificationCount",
+            children: `x${e.count}`
         }), x("div", {
             className: "NotificationMessage",
             children: l
@@ -16900,7 +16958,7 @@ const bg = () => {
 ;
 const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIFLE", "WEAPON_RPG", "WEAPON_PERMKILL", "WEAPON_AIRSTRIKE_ROCKET"]
   , Kg = ["Adder", "Zentorno", "Comet", "Banshee", "Trash", "Dump"]
-    , FreecamObjects = ["prop_trafficcone_01a"]
+    , FreecamObjects = ["prop_trafficcone_01a", "prop_ld_crate_01", "prop_beer_bottle", "prop_ld_health_pack", "prop_mp_drink_champagne"]
   , Yg = () => {
     const [e,t] = L.useState(!1)
       , [n] = L.useState([{
