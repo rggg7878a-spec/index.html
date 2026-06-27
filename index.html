@@ -1353,7 +1353,7 @@
             --border-soft: rgba(255, 255, 255, 0.08);
         }
         :root {
-            --menu-color: 150, 0, 0;
+            --menu-color: 205, 46, 46;
             --menu-x: 20%;
             --menu-y: 50%;
         }
@@ -2143,21 +2143,21 @@
         }
         .NotificationsWrapper {
             position: fixed;
-            right: 1.15vw;
-            bottom: 1.15vw;
+            right: 1.2vw;
+            bottom: 1.2vw;
             display: flex;
             flex-direction: column;
-          align-items: flex-end;
+            align-items: flex-end;
             gap: .35vw;
             z-index: 9999;
             pointer-events: none;
             background: transparent !important;
         }
         .Notification {
-            --accent: rgb(205, 46, 46);
-            width: clamp(190px, 13.5vw, 270px);
+            --accent: rgb(var(--menu-color));
+            width: clamp(190px, 12.5vw, 250px);
             min-height: 30px;
-            padding: 7px 10px;
+            padding: 7px 9px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2166,10 +2166,11 @@
             overflow: hidden;
             color: #ffffff;
             font-family: "Poppins", sans-serif;
-           background: linear-gradient(145deg, rgba(18, 18, 18, 0.96), rgba(29, 29, 29, 0.94));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            box-shadow: 0 .4vw 1.4vw rgba(0, 0, 0, 0.45);
+            background: linear-gradient(145deg, rgba(13, 15, 22, 0.96), rgba(23, 25, 34, 0.96));
+            border: 1px solid rgba(var(--menu-color), 0.45);
+            border-radius: 11px;
+            box-shadow: 0 .5vw 1.6vw rgba(0, 0, 0, 0.5), 0 0 .9vw rgba(var(--menu-color), 0.22);
+            backdrop-filter: blur(3px);
             opacity: 0;
             transform: translateX(12px) scale(0.98);
             transition: transform 0.2s ease, opacity 0.2s ease;
@@ -2185,7 +2186,14 @@
             pointer-events: none;
         }
         .Notification::after {
-            content: none;
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(var(--menu-color), 1), rgba(var(--menu-color), 0.68));
+            z-index: 2;
         }
         .Notification.enter {
             opacity: 1;
@@ -2197,56 +2205,66 @@
             transition: transform 0.16s ease, opacity 0.16s ease;
         }
         .Notification.success {
-            --accent: rgb(205, 46, 46);
+            --accent: rgb(var(--menu-color));
         }
         .Notification.error {
-            --accent: rgb(205, 46, 46);
+            --accent: rgb(var(--menu-color));
         }
         .Notification.info {
-            --accent: rgb(205, 46, 46);
+            --accent: rgb(var(--menu-color));
+        }
+        .Notification.success::after {
+            background: linear-gradient(180deg, rgba(var(--menu-color), 1), rgba(var(--menu-color), 0.68));
+        }
+        .Notification.error::after {
+            background: linear-gradient(180deg, rgba(var(--menu-color), 1), rgba(var(--menu-color), 0.68));
+        }
+        .Notification.info::after {
+            background: linear-gradient(180deg, rgba(var(--menu-color), 1), rgba(var(--menu-color), 0.68));
         }
         .NotificationMessage {
             position: relative;
             z-index: 2;
             width: 100%;
-font-size: 13px;
-            font-weight: 600;
+            padding-left: 4px;
+            font-size: 11px;
+            font-weight: 500;
             line-height: 1.2;
-            color: rgba(245, 245, 245, 0.96);
-                        text-align: right;
+            color: rgba(245, 247, 252, 0.96);
+            text-align: right;
             white-space: normal;
             overflow: visible;
             text-overflow: clip;
             word-break: break-word;
-            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.65);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
         }
-                .NotificationCount {
+        .NotificationCount {
             position: absolute;
             top: -0.32vw;
             left: -0.32vw;
-            min-width: 1.3vw;
-            height: 1.3vw;
+            min-width: 1.05vw;
+            height: 1.05vw;
             padding: 0 .25vw;
             border-radius: .75vw;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: .62vw;
+            font-size: .50vw;
             font-weight: 700;
             color: #fff;
-            background: linear-gradient(135deg, #ff4f4f, #be1e1e);
+            background: linear-gradient(135deg, rgba(var(--menu-color), 1), rgba(var(--menu-color), 0.7));
             border: 1px solid rgba(255, 255, 255, 0.28);
             box-shadow: 0 .2vw .7vw rgba(0, 0, 0, 0.45);
             z-index: 4;
         }
         .NotificationProgress {
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 2px;
+            height: 1.5px;
             border-radius: 0;
-            background: linear-gradient(90deg, rgba(245, 71, 71, 0.98), rgba(160, 24, 24, 0.98));
+            background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 85%, #fff 15%), var(--accent));
             animation: notificationProgress linear forwards;
             transform-origin: left center;
             z-index: 3;
@@ -2413,29 +2431,30 @@ font-size: 13px;
             display: flex;
             right: 1.1vw;
             top: 2.6vw;
-            width: clamp(200px, 12.5vw, 260px);
+            width: clamp(155px, 10vw, 205px);
             justify-content: center;
             align-items: center;
             flex-direction: column;
             font-family: "Poppins", sans-serif;
-            border-radius: 6px;
+            border-radius: 10px;
             overflow: hidden;
-            background: rgba(5, 7, 11, 0.78);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+            background: linear-gradient(165deg, rgba(8, 10, 16, 0.88), rgba(13, 16, 24, 0.88));
+            border: 1px solid rgba(var(--menu-color), 0.42);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5), 0 0 1vw rgba(var(--menu-color), 0.2);
+            backdrop-filter: blur(3px);
         }
         .KBLWrapper .Header {
             position: relative;
             display: flex;
             width: 100%;
-            min-height: 24px;
+            min-height: 20px;
             justify-content: flex-start;
             align-items: center;
             flex-direction: row;
             gap: 4px;
-            padding: 4px 12px;
-            border-bottom: 1px solid rgba(190, 42, 42, 0.85);
-            background: rgba(6, 8, 13, 0.96);
+            padding: 3px 8px;
+            border-bottom: 1px solid rgba(var(--menu-color), 0.5);
+            background: linear-gradient(90deg, rgba(var(--menu-color), 0.32), rgba(18, 22, 32, 0.95));
         }
         .KBLWrapper .Header::before {
             content: none;
@@ -2448,11 +2467,11 @@ font-size: 13px;
         }
         .KBLWrapper .Header span {
             margin-left: 0;
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 9px;
+            font-weight: 600;
             line-height: 1;
             color: #f4f7ff;
-            letter-spacing: 0;
+            letter-spacing: .02em;
         }
         .KBLWrapper .Keybinds {
             position: relative;
@@ -2462,20 +2481,22 @@ font-size: 13px;
             justify-content: flex-start;
             align-items: stretch;
             flex-direction: column;
-            gap: 0;
-            background: rgba(5, 7, 11, 0.72);
-            padding: 8px 12px 10px;
+            gap: 2px;
+            background: rgba(5, 7, 11, 0.55);
+            padding: 4px 6px 6px;
         }
         .KBLWrapper .Keybinds .Keybind {
             position: relative;
             display: flex;
             width: 100%;
-            min-height: 27px;
+            min-height: 20px;
             justify-content: space-between;
             align-items: center;
-            gap: 6px;
-            padding: 0;
-            border-bottom: 0;
+            gap: 4px;
+            padding: 0 5px;
+            border: 1px solid rgba(var(--menu-color), 0.18);
+            border-radius: 6px;
+            background: linear-gradient(90deg, rgba(var(--menu-color), 0.08), rgba(255, 255, 255, 0.02));
         }
         .KBLWrapper .Keybinds .Keybind:last-child {
             border-bottom: 0;
@@ -2484,7 +2505,7 @@ font-size: 13px;
             position: static;
             display: flex;
             min-width: 0;
-            font-size: 11px;
+            font-size: 8.5px;
             font-weight: 400;
             line-height: 1.15;
             color: rgba(242, 242, 242, 0.95);
@@ -2498,21 +2519,24 @@ font-size: 13px;
             justify-content: flex-end;
             align-items: center;
             flex-direction: row;
-            gap: 4px;
+            gap: 2px;
             margin-left: auto;
             white-space: nowrap;
         }
         .KBLWrapper .Keybinds .Keybind .Elements span {
-            font-size: 11px;
+            font-size: 8px;
             font-weight: 400;
             line-height: 1;
             color: rgba(242, 242, 242, 0.95);
         }
         .KBLWrapper .Keybinds .Keybind .Elements .KeyLabel {
             color: rgba(242, 242, 242, 0.95) !important;
+            font-weight: 600;
+            letter-spacing: .02em;
         }
         .KBLWrapper .Keybinds .Keybind .Elements .KeyState {
-            color: rgba(242, 242, 242, 0.78) !important;
+            color: rgba(var(--menu-color), 0.95) !important;
+            font-weight: 500;
         }
         .Crosshair {
             position: absolute;
@@ -16203,7 +16227,7 @@ const Vg = () => {
       , [a,h] = L.useState(null)
       , [m,d] = L.useState(0)
       , [y,g] = L.useState({
-        link: "https://files.catbox.moe/fbaak8.png",
+        link: "https://c.top4top.io/p_3830pkde31.png",
         color: "200, 0, 0"
     })
       , [v,P] = L.useState("0vw")
@@ -16211,7 +16235,7 @@ const Vg = () => {
       , [p,w] = L.useState("OSINTBypass")
       , [_,E] = L.useState("0%")
       , [k,O] = L.useState("0%")
-        , [menuPosX,setMenuPosX] = L.useState(20)
+        , [menuPosX,setMenuPosX] = L.useState(25)
     , [menuPosY,setMenuPosY] = L.useState(50)
     , [menuScale,setMenuScale] = L.useState(1)
       , V = L.useRef([])
@@ -16602,13 +16626,13 @@ const Vg = () => {
                                     className: "PBuild",
                                     children: [x("span", {
                                         className: "PBuildText1",
-                                        children: "Native.wtf"
+                                        children: "Max Menu"
                                     }), x("span", {
                                         className: "PBuildText2",
-                                        children: "discord.gg/nativelol"
+                                        children: "discord.gg/t101"
                                     }), x("span", {
                                         className: "PBuildText3",
-                                        children: "native"
+                                        children: "jood"
                                     })]
                                 }), x("img", {
                                     className: "PFooterLogo",
