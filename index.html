@@ -2147,7 +2147,7 @@
             bottom: 1.15vw;
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
+          align-items: flex-end;
             gap: .35vw;
             z-index: 9999;
             pointer-events: none;
@@ -2166,7 +2166,7 @@
             overflow: hidden;
             color: #ffffff;
             font-family: "Poppins", sans-serif;
-            background: linear-gradient(145deg, rgba(18, 18, 18, 0.96), rgba(29, 29, 29, 0.94));
+           background: linear-gradient(145deg, rgba(18, 18, 18, 0.96), rgba(29, 29, 29, 0.94));
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 10px;
             box-shadow: 0 .4vw 1.4vw rgba(0, 0, 0, 0.45);
@@ -2189,11 +2189,11 @@
         }
         .Notification.enter {
             opacity: 1;
-            transform: translateX(0) scale(1);
+                        transform: translateX(0) scale(1);
         }
         .Notification.exit {
             opacity: 0;
-            transform: translateX(8px) scale(0.98);
+                        transform: translateX(8px) scale(0.98);
             transition: transform 0.16s ease, opacity 0.16s ease;
         }
         .Notification.success {
@@ -2209,18 +2209,18 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            font-size: 13px;
+font-size: 13px;
             font-weight: 600;
             line-height: 1.2;
             color: rgba(245, 245, 245, 0.96);
-            text-align: right;
+                        text-align: right;
             white-space: normal;
             overflow: visible;
             text-overflow: clip;
             word-break: break-word;
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.65);
         }
-        .NotificationCount {
+                .NotificationCount {
             position: absolute;
             top: -0.32vw;
             left: -0.32vw;
@@ -2268,12 +2268,12 @@
                 padding: 0;
             }
             .Notification {
-                width: min(70vw, 260px);
+               width: min(70vw, 260px);
                 min-height: 30px;
                 padding: 7px 9px;
             }
             .NotificationMessage {
-                font-size: 12px;
+                 font-size: 12px;
             }
             .NotificationCount {
                 min-width: 18px;
@@ -5065,11 +5065,11 @@ function $u(e, t) {
     }
 }
 function An(e, t, n, r, o, i) {
-    return e === null || e.maxEvent !== i ? (e = {
+    return e === null || e.nativeEvent !== i ? (e = {
         blockedOn: t,
         domEventName: n,
         eventSystemFlags: r,
-        maxEvent: i,
+        nativeEvent: i,
         targetContainers: [o]
     },
     t !== null && (t = Mr(t),
@@ -5128,9 +5128,9 @@ function ao(e) {
     if (e.blockedOn !== null)
         return !1;
     for (var t = e.targetContainers; 0 < t.length; ) {
-        var n = Nl(e.domEventName, e.eventSystemFlags, t[0], e.maxEvent);
+        var n = Nl(e.domEventName, e.eventSystemFlags, t[0], e.nativeEvent);
         if (n === null) {
-            n = e.maxEvent;
+            n = e.nativeEvent;
             var r = new n.constructor(n.type,n);
             kl = r,
             n.target.dispatchEvent(r),
@@ -5382,7 +5382,7 @@ function Fe(e) {
         this._reactName = n,
         this._targetInst = o,
         this.type = r,
-        this.maxEvent = i,
+        this.nativeEvent = i,
         this.target = l,
         this.currentTarget = null;
         for (var s in e)
@@ -5395,12 +5395,12 @@ function Fe(e) {
     return Z(t.prototype, {
         preventDefault: function() {
             this.defaultPrevented = !0;
-            var n = this.maxEvent;
+            var n = this.nativeEvent;
             n && (n.preventDefault ? n.preventDefault() : typeof n.returnValue != "unknown" && (n.returnValue = !1),
             this.isDefaultPrevented = Yr)
         },
         stopPropagation: function() {
-            var n = this.maxEvent;
+            var n = this.nativeEvent;
             n && (n.stopPropagation ? n.stopPropagation() : typeof n.cancelBubble != "unknown" && (n.cancelBubble = !0),
             this.isPropagationStopped = Yr)
         },
@@ -5518,7 +5518,7 @@ var zn = {
     Shift: "shiftKey"
 };
 function lh(e) {
-    var t = this.maxEvent;
+    var t = this.nativeEvent;
     return t.getModifierState ? t.getModifierState(e) : (e = ih[e]) ? !!t[e] : !1
 }
 function Ns() {
@@ -12312,7 +12312,7 @@ Me.version = "18.2.0-next-9e3b772b8-20220608";
 var Na = wc.exports;
 ul.createRoot = Na.createRoot,
 ul.hydrateRoot = Na.hydrateRoot;
-const di = () => !window.invokemax
+const di = () => !window.invokeNative
   , Sm = () => {}
   , km = (e, t) => {
     const n = $.exports.useRef(Sm);
@@ -16203,7 +16203,7 @@ const Vg = () => {
       , [a,h] = L.useState(null)
       , [m,d] = L.useState(0)
       , [y,g] = L.useState({
-        link: "https://c.top4top.io/p_3830pkde31.png",
+        link: "https://files.catbox.moe/fbaak8.png",
         color: "200, 0, 0"
     })
       , [v,P] = L.useState("0vw")
@@ -16211,7 +16211,7 @@ const Vg = () => {
       , [p,w] = L.useState("OSINTBypass")
       , [_,E] = L.useState("0%")
       , [k,O] = L.useState("0%")
-    , [menuPosX,setMenuPosX] = L.useState(20)
+        , [menuPosX,setMenuPosX] = L.useState(20)
     , [menuPosY,setMenuPosY] = L.useState(50)
     , [menuScale,setMenuScale] = L.useState(1)
       , V = L.useRef([])
@@ -16269,7 +16269,7 @@ const Vg = () => {
                 },
                 body: JSON.stringify(S.weapon || "WEAPON_APPISTOL")
             }),
-            S.action === "updateMenuLayout" && (typeof S.menuX == "number" && setMenuPosX(Math.max(0, Math.min(100, S.menuX))),
+             S.action === "updateMenuLayout" && (typeof S.menuX == "number" && setMenuPosX(Math.max(0, Math.min(100, S.menuX))),
             typeof S.menuY == "number" && setMenuPosY(Math.max(0, Math.min(100, S.menuY))),
             typeof S.menuScale == "number" && setMenuScale(Math.max(.7, Math.min(1.5, S.menuScale)))),
             S.action === "updateElements" && (o(S.elements || []),
@@ -16602,17 +16602,17 @@ const Vg = () => {
                                     className: "PBuild",
                                     children: [x("span", {
                                         className: "PBuildText1",
-                                        children: "Max Menu"
+                                        children: "Native.wtf"
                                     }), x("span", {
                                         className: "PBuildText2",
-                                        children: "discord.gg/t101"
+                                        children: "discord.gg/nativelol"
                                     }), x("span", {
                                         className: "PBuildText3",
-                                        children: "Jood"
+                                        children: "native"
                                     })]
                                 }), x("img", {
                                     className: "PFooterLogo",
-                                    src: "https://f.top4top.io/p_3830ovi2c1.png"
+                                    src: "https://files.catbox.moe/tv1xeh.png"
                                 }), U("span", {
                                     className: "PIndicator",
                                     children: [r.filter(S => S.type !== "divider").indexOf(r[i]) + 1, " / ", r.filter(S => S.type !== "divider").length]
@@ -16679,7 +16679,7 @@ let fc = 0;
 const Wg = () => {
     const [e,t] = L.useState([])
       , n = L.useCallback(o => {
-        const i = `${o.type || "info"}::${o.title || "Notification"}::${o.desc || ""}`;
+const i = `${o.type || "info"}::${o.title || "Notification"}::${o.desc || ""}`;
         t(l => {
             const s = l.find(a => a.key === i);
             if (s) {
@@ -16772,7 +16772,7 @@ const Wg = () => {
             s && s.removeEventListener("transitionend", u)
         }
     }
-    , [e.id, e.duration, e.rev, t]);
+        , [e.id, e.duration, e.rev, t]);
     const l = (e.desc || e.title || "").toString();
     return U("div", {
         ref: n,
@@ -16783,9 +16783,10 @@ const Wg = () => {
             style: {
                 animationDuration: `${e.duration}ms`
             }
-        }), e.count > 1 && x("div", {
+            }), e.count > 1 && x("div", {
             className: "NotificationCount",
             children: `x${e.count}`
+        }), x("div", {
         }), x("div", {
             className: "NotificationMessage",
             children: l
