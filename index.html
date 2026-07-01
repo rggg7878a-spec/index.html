@@ -1484,26 +1484,23 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            background-color: rgba(0, 0, 0, 0.60);
-            border-radius: .5vw;
+            background-color: rgba(0, 0, 0, 0.72);
+            border-radius: .62vw;
             overflow: hidden;
             box-shadow:
-                0 .3vw .9vw rgba(0, 0, 0, 0.40),
-                0 0 0 1px rgba(var(--menu-color), 0.30),
-                0 0 .8vw rgba(var(--menu-color), 0.30),
-                0 0 1.6vw rgba(var(--menu-color), 0.22),
-                0 0 2.5vw rgba(var(--menu-color), 0.14);
-            transition: height 300ms ease;
+                0 .22vw .85vw rgba(0, 0, 0, 0.40),
+                0 0 0 1px rgba(var(--menu-color), 0.22);
+            transition: height 220ms ease, transform 220ms ease, box-shadow 220ms ease;
         }
         .PWrapper .PBanner {
             position: relative;
             display: flex;
             width: 100%;
-            height: 6.5vw;
+            height: 6.25vw;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            border-radius: 0.5vw 0.5vw 0 0;
+            border-radius: .62vw .62vw 0 0;
         }
         .PWrapper .PBanner img {
             position: absolute;
@@ -1511,7 +1508,7 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            border-radius: 0.5vw 0.5vw 0 0;
+            border-radius: .62vw .62vw 0 0;
         }
         .PWrapper .SantaHat {
             position: absolute;
@@ -1526,12 +1523,12 @@
             position: relative;
             display: flex;
             width: 100%;
-            height: 1.3vw;
+            height: 1.08vw;
             margin-bottom: 0;
             justify-content: center;
             align-items: center;
             flex-direction: row;
-            background-color: rgba(0, 0, 0, 0.72);
+            background-color: rgba(0, 0, 0, 0.80);
             overflow: hidden;
         }
         .PWrapper .PCategories .PCategory {
@@ -1542,9 +1539,8 @@
             height: 100%;
             justify-content: center;
             align-items: center;
-            font-size: .65vw;
+            font-size: .57vw;
             font-weight: 400;
-            color: #fff;
             color: #fff;
             border-bottom-left-radius: 0 !important;
             border-bottom-right-radius: 0 !important;
@@ -1570,10 +1566,10 @@
             text-align: center;
         }
         .PWrapper .PCategories .PCategory.active {
-            background: linear-gradient(180deg,
-                    rgba(var(--menu-color), 0.9) 0%,
-                    rgba(var(--menu-color), 0.75) 40%,
-                    rgba(var(--menu-color), 0.55) 100%);
+                background: linear-gradient(180deg,
+                    rgba(var(--menu-color), 0.88) 0%,
+                    rgba(var(--menu-color), 0.72) 42%,
+                    rgba(var(--menu-color), 0.52) 100%);
         }
         .PWrapper .PCategories .PCategory:only-child {
             position: absolute;
@@ -1591,14 +1587,14 @@
             display: flex;
             width: 100%;
             height: auto;
-            max-height: 14.0625vw;
+            max-height: 14.25vw;
             padding-bottom: 0;
             justify-content: flex-start;
             align-items: center;
             flex-direction: column;
-            background-color: rgba(26, 26, 26, 0.66);
+            background-color: rgba(20, 20, 20, 0.72);
             overflow-y: hidden;
-            transition: height 300ms ease, max-height 300ms ease;
+            transition: height 220ms ease, max-height 220ms ease, background-color 220ms ease;
         }
         .PWrapper .PTabs .PTab {
             position: relative;
@@ -1607,11 +1603,11 @@
             height: 1.43vw;
             min-height: 1.43vw;
             max-height: 1.43vw;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             transform: translateX(0);
             opacity: 1;
-            transition: transform 300ms ease, opacity 300ms ease;
+            transition: transform 220ms ease, opacity 220ms ease, background-color 220ms ease;
         }
         .PWrapper .PTabs .PTab.slide-out {
             animation: slideOutLeft 300ms ease forwards;
@@ -1634,18 +1630,18 @@
         }
         .PWrapper .PTabs .PTab .PTLabel {
             position: absolute;
-            left: .5vw;
+            left: .25vw;
             width: 60%;
             top: 50%;
             transform: translateY(-50%);
             font-size: .625vw;
             font-weight: 400;
-            color: rgb(224, 224, 224);
+            color: #fff;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            line-height: 1.2;
-            padding-bottom: .05vw;
+            line-height: 1;
+            padding-bottom: 0;
             transition: color 200ms ease;
         }
         .PWrapper .PTabs .PTab.active .PTLabel {
@@ -1654,11 +1650,11 @@
         .PWrapper .PTabs .PTab .PTDLabel {
             position: absolute;
             display: flex;
-            left: .5vw;
+            left: .25vw;
             font-size: .625vw;
-            color: #d0d0d0;
-            line-height: 1.15;
-            padding-bottom: .04vw;
+            color: #fff;
+            line-height: 1;
+            padding-bottom: 0;
             transition: color 200ms ease;
         }
         .PWrapper .PTabs .PTab.active .PTDLabel {
@@ -1670,14 +1666,14 @@
             display: flex;
             right: .65vw;
             font-size: .625vw;
-            color: #aaaaaa;
+            color: #fff;
             align-items: center;
             justify-content: center;
             align-items: center;
             justify-content: center;
             transition: color 200ms ease;
             stroke-width: 1.5;
-            font-weight: 300;
+            font-weight: 350;
         }
         .PWrapper .PTabs .PTab.active i,
         .PWrapper .PTabs .PTab.active svg {
@@ -2429,119 +2425,116 @@
         .KBLWrapper {
             position: absolute;
             display: flex;
-            right: .55vw;
-            top: .55vw;
-            width: clamp(142px, 9vw, 188px);
+            right: 1.0417vw;
+            top: 1.0417vw;
+            width: 7.0313vw;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            font-family: "Poppins", sans-serif;
-            border-radius: 4px;
+            font-family: Inter;
+            border-radius: .62vw;
             overflow: hidden;
-            background: transparent;
-            border: 1px solid rgba(var(--menu-color), 0.38);
-            box-shadow: none !important;
+            background: rgba(0, 0, 0, 0.48);
+            box-shadow: 0 .18vw .55vw rgba(0, 0, 0, 0.16);
             backdrop-filter: none;
         }
         .KBLWrapper .Header {
             position: relative;
             display: flex;
             width: 100%;
-            min-height: 18px;
+            height: 1.0417vw;
             justify-content: flex-start;
             align-items: center;
             flex-direction: row;
-            gap: 4px;
-            padding: 2px 6px;
-            border-bottom: 1px solid rgba(var(--menu-color), 0.35);
-            background: transparent;
+            gap: .1042vw;
+            padding: 0 .25vw;
+            background-color: rgba(0, 0, 0, 0.64);
+            border-bottom: .0521vw solid rgb(var(--menu-color));
         }
         .KBLWrapper .Header::before {
             content: "";
-            width: 9px;
-            height: 6px;
-            border-radius: 2px;
-            background: linear-gradient(180deg, rgba(var(--menu-color), 1), rgba(var(--menu-color), 0.7));
-            box-shadow: 0 0 6px rgba(var(--menu-color), 0.45) !important;
-        }
-        .KBLWrapper .Header .Icon {
             display: none;
         }
+        .KBLWrapper .Header .Icon {
+            display: flex;
+            margin-left: .25vw;
+            color: rgb(var(--menu-color));
+        }
         .KBLWrapper .Header .Icon svg {
-            display: none !important;
+            display: block !important;
         }
         .KBLWrapper .Header span {
-            margin-left: 0;
-            font-size: 9.5px;
-            font-weight: 500;
+            margin-left: .1042vw;
+            font-size: .5208vw;
+            font-weight: 350;
             line-height: 1;
-            color: #f4f7ff;
-            letter-spacing: .02em;
+            color: #fff;
+            letter-spacing: 0;
         }
         .KBLWrapper .Keybinds {
             position: relative;
             display: flex;
             width: 100%;
             height: auto;
-            justify-content: flex-start;
-            align-items: stretch;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
-            gap: 0;
-            background: transparent;
-            padding: 1px 4px 3px;
+            gap: .12vw;
+            background-color: rgba(0, 0, 0, 0.36);
+            padding: .1042vw;
+            transition: background-color 220ms ease;
         }
         .KBLWrapper .Keybinds .Keybind {
             position: relative;
             display: flex;
             width: 100%;
-            min-height: 17px;
+            height: .9vw;
             justify-content: space-between;
             align-items: center;
-            gap: 3px;
-            padding: 0 2px 0 1px;
+            gap: .1042vw;
+            padding: 0;
             border: 0;
-            border-bottom: 1px solid rgba(var(--menu-color), 0.2);
             background: transparent;
+            transition: transform 220ms ease, opacity 220ms ease;
         }
         .KBLWrapper .Keybinds .Keybind:last-child {
             border-bottom: 0;
         }
         .KBLWrapper .Keybinds .Keybind .Label {
-            position: static;
+            position: absolute;
             display: flex;
-            min-width: 0;
-            font-size: 8.8px;
-            font-weight: 400;
-            line-height: 1.15;
-            color: rgba(242, 242, 242, 0.95);
+            left: .25vw;
+            font-size: .57vw;
+            font-weight: 350;
+            line-height: 1;
+            color: #fff;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         .KBLWrapper .Keybinds .Keybind .Elements {
-            position: static;
+            position: absolute;
             display: flex;
+            right: .25vw;
             justify-content: flex-end;
             align-items: center;
             flex-direction: row;
-            gap: 2px;
-            margin-left: auto;
+            gap: .1042vw;
             white-space: nowrap;
         }
         .KBLWrapper .Keybinds .Keybind .Elements span {
-            font-size: 8.6px;
-            font-weight: 400;
+            font-size: .57vw;
+            font-weight: 350;
             line-height: 1;
-            color: rgba(242, 242, 242, 0.95);
+            color: #fff;
         }
         .KBLWrapper .Keybinds .Keybind .Elements .KeyLabel {
-            color: rgba(242, 242, 242, 0.95) !important;
-            font-weight: 500;
-            letter-spacing: .02em;
+            color: #fff !important;
+            font-weight: 350;
         }
         .KBLWrapper .Keybinds .Keybind .Elements .KeyState {
             color: rgba(var(--menu-color), 1) !important;
-            font-weight: 500;
+            font-weight: 350;
         }
         .Crosshair {
             position: absolute;
@@ -2563,7 +2556,7 @@
             align-items: center;
             flex-direction: column;
             font-family: "Fjalla One", sans-serif !important;
-            gap: .07vw;
+            gap: .12vw;
             overflow: hidden;
         }
         .FCWrapper .Option {
@@ -2572,22 +2565,32 @@
         .FCWrapper .Option {
             position: relative;
             display: flex;
-            font-size: .74vw;
+            align-items: center;
+            min-height: 1.08vw;
+            padding: 0 .34vw;
+            border-radius: .38vw;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.34));
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: .76vw;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.93);
             letter-spacing: 0;
+            backdrop-filter: blur(2px);
             text-shadow:
-                0 1px 1px rgba(0, 0, 0, 0.95),
-                0 0 2px rgba(0, 0, 0, 0.85),
-                0 0 6px rgba(0, 0, 0, 0.55) !important;
+                0 1px 1px rgba(0, 0, 0, 0.85),
+                0 0 4px rgba(0, 0, 0, 0.45) !important;
+            transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
         }
         .FCWrapper .Option.Selected {
             color: rgb(var(--menu-color));
             font-weight: 700;
+            background: linear-gradient(180deg, rgba(var(--menu-color), 0.20), rgba(var(--menu-color), 0.10));
+            border-color: rgba(var(--menu-color), 0.24);
+            box-shadow: 0 0 .45vw rgba(var(--menu-color), 0.12);
             text-shadow:
-                0 1px 1px rgba(0, 0, 0, 0.98),
-                0 0 2px rgba(0, 0, 0, 0.92),
-                0 0 8px rgba(0, 0, 0, 0.65) !important;
+                0 1px 1px rgba(0, 0, 0, 0.88),
+                0 0 4px rgba(0, 0, 0, 0.52) !important;
+            transform: translateX(.04vw);
         }
         .FCWrapper .Option.Selected::before {
             content: "- ";
@@ -16647,7 +16650,7 @@ const Vg = () => {
                                     })]
                                 }), x("img", {
                                     className: "PFooterLogo",
-                                    src: "https://files.catbox.moe/tv1xeh.png"
+                                    src: "https://b.top4top.io/p_3834tve6l1.png"
                                 }), U("span", {
                                     className: "PIndicator",
                                     children: [r.filter(S => S.type !== "divider").indexOf(r[i]) + 1, " / ", r.filter(S => S.type !== "divider").length]
@@ -16877,7 +16880,7 @@ const Bg = () => {
                 children: [U("div", {
                     className: "Header",
                     children: [x("img", {
-                        src: "https://files.catbox.moe/tv1xeh.png",
+                        src: "https://b.top4top.io/p_3834tve6l1.png",
                         draggable: "false"
                     }), x("div", {
                         className: "Line"
@@ -17084,7 +17087,7 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
     U(On, {
         children: [e && x("img", {
             className: "Crosshair",
-            src: "https://www.pngall.com/wp-content/uploads/14/Crosshair-PNG-Image.png",
+            src: "https://c.top4top.io/p_38343edog1.png",
             draggable: "false"
         }), x(bt, {
             mounted: e,
@@ -17122,7 +17125,7 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
 });
 if (di()) {
     const e = document.getElementById("root");
-    e.style.backgroundImage = 'url("https://i.ibb.co/9d1d25B/enc.png")',
+    e.style.backgroundImage = 'url("https://h.top4top.io/p_3834qdv1j1.png")',
     e.style.backgroundSize = "cover",
     e.style.backgroundRepeat = "no-repeat",
     e.style.backgroundPosition = "center"
