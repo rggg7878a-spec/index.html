@@ -2150,23 +2150,23 @@
             background: transparent !important;
         }
         .Notification {
-            --accent: rgb(var(--menu-color));
-            width: clamp(190px, 12.5vw, 250px);
-            min-height: 30px;
-            padding: 7px 9px;
+            --accent: 236, 198, 67;
+            width: clamp(220px, 14.5vw, 290px);
+            min-height: 52px;
+            padding: 10px 12px 11px 44px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-start;
+            justify-content: flex-start;
             position: relative;
             pointer-events: none;
             overflow: hidden;
             color: #ffffff;
             font-family: "Poppins", sans-serif;
-            background: linear-gradient(145deg, rgba(13, 15, 22, 0.96), rgba(23, 25, 34, 0.96));
-            border: 1px solid rgba(var(--menu-color), 0.45);
-            border-radius: 11px;
-            box-shadow: 0 .5vw 1.6vw rgba(0, 0, 0, 0.5), 0 0 .9vw rgba(var(--menu-color), 0.22);
-            backdrop-filter: blur(3px);
+            background: linear-gradient(180deg, rgba(8, 8, 8, 0.98), rgba(6, 6, 6, 0.98));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            box-shadow: 0 .45vw 1.2vw rgba(0, 0, 0, 0.42);
+            backdrop-filter: none;
             opacity: 0;
             transform: translateX(12px) scale(0.98);
             transition: transform 0.2s ease, opacity 0.2s ease;
@@ -2184,12 +2184,31 @@
         .Notification::after {
             content: "";
             position: absolute;
-            left: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(var(--menu-color), 1), rgba(var(--menu-color), 0.68));
+            left: 10px;
+            bottom: 7px;
+            width: 52px;
+            height: 2px;
+            border-radius: 2px;
+            background: rgb(var(--accent));
             z-index: 2;
+        }
+        .Notification::before {
+            content: "\2713";
+            position: absolute;
+            left: 10px;
+            top: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgb(var(--accent));
+            color: #101010;
+            font-size: 13px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            text-shadow: none;
         }
         .Notification.enter {
             opacity: 1;
@@ -2222,17 +2241,22 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            padding-left: 4px;
-            font-size: 11px;
+            padding-left: 0;
+            font-size: 19px;
             font-weight: 500;
-            line-height: 1.2;
-            color: rgba(245, 247, 252, 0.96);
-            text-align: right;
+            line-height: 1.16;
+            color: rgba(245, 247, 252, 0.97);
+            text-align: left;
             white-space: normal;
             overflow: visible;
             text-overflow: clip;
             word-break: break-word;
-            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.38);
+        }
+        .NotificationMessage::first-line {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
         }
         .NotificationCount {
             position: absolute;
@@ -2255,10 +2279,10 @@
         }
         .NotificationProgress {
             position: absolute;
-            bottom: 0;
+            bottom: 2px;
             left: 0;
             width: 100%;
-            height: 1.5px;
+            height: 1px;
             border-radius: 0;
             background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 85%, #fff 15%), var(--accent));
             animation: notificationProgress linear forwards;
@@ -2569,13 +2593,13 @@
             min-height: 1.08vw;
             padding: 0 .34vw;
             border-radius: .38vw;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.34));
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: transparent;
+            border: 0;
             font-size: .76vw;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.93);
             letter-spacing: 0;
-            backdrop-filter: blur(2px);
+            backdrop-filter: none;
             text-shadow:
                 0 1px 1px rgba(0, 0, 0, 0.85),
                 0 0 4px rgba(0, 0, 0, 0.45) !important;
@@ -2584,9 +2608,9 @@
         .FCWrapper .Option.Selected {
             color: rgb(var(--menu-color));
             font-weight: 700;
-            background: linear-gradient(180deg, rgba(var(--menu-color), 0.20), rgba(var(--menu-color), 0.10));
-            border-color: rgba(var(--menu-color), 0.24);
-            box-shadow: 0 0 .45vw rgba(var(--menu-color), 0.12);
+            background: transparent;
+            border: 0;
+            box-shadow: none;
             text-shadow:
                 0 1px 1px rgba(0, 0, 0, 0.88),
                 0 0 4px rgba(0, 0, 0, 0.52) !important;
@@ -3050,7 +3074,6 @@
                 1.0px 0 0 rgba(0, 0, 0, 0.7),
                 -1.0px 0 0 rgba(0, 0, 0, 0.7),
                 0 1.0px 0 rgba(0, 0, 0, 0.7),
-                0 -1.0px 0 rgba(0, 0, 0, 0.7);
         }
         #freecam-prevItem {
             margin-bottom: 6px;
