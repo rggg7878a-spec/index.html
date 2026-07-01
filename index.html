@@ -2429,35 +2429,40 @@
         .KBLWrapper {
             position: absolute;
             display: flex;
-            right: 1.1vw;
-            top: 2.6vw;
-            width: clamp(155px, 10vw, 205px);
+            right: .55vw;
+            top: .55vw;
+            width: clamp(142px, 9vw, 188px);
             justify-content: center;
             align-items: center;
             flex-direction: column;
             font-family: "Poppins", sans-serif;
-            border-radius: 10px;
+            border-radius: 4px;
             overflow: hidden;
-            background: linear-gradient(165deg, rgba(8, 10, 16, 0.88), rgba(13, 16, 24, 0.88));
-            border: 1px solid rgba(var(--menu-color), 0.42);
-            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5), 0 0 1vw rgba(var(--menu-color), 0.2);
-            backdrop-filter: blur(3px);
+            background: linear-gradient(180deg, rgba(8, 12, 18, 0.9), rgba(6, 9, 14, 0.92));
+            border: 1px solid rgba(var(--menu-color), 0.38);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45) !important;
+            backdrop-filter: blur(2px);
         }
         .KBLWrapper .Header {
             position: relative;
             display: flex;
             width: 100%;
-            min-height: 20px;
+            min-height: 18px;
             justify-content: flex-start;
             align-items: center;
             flex-direction: row;
             gap: 4px;
-            padding: 3px 8px;
-            border-bottom: 1px solid rgba(var(--menu-color), 0.5);
-            background: linear-gradient(90deg, rgba(var(--menu-color), 0.32), rgba(18, 22, 32, 0.95));
+            padding: 2px 6px;
+            border-bottom: 1px solid rgba(var(--menu-color), 0.35);
+            background: rgba(10, 15, 23, 0.94);
         }
         .KBLWrapper .Header::before {
-            content: none;
+            content: "";
+            width: 9px;
+            height: 6px;
+            border-radius: 2px;
+            background: linear-gradient(180deg, rgba(var(--menu-color), 1), rgba(var(--menu-color), 0.7));
+            box-shadow: 0 0 6px rgba(var(--menu-color), 0.45) !important;
         }
         .KBLWrapper .Header .Icon {
             display: none;
@@ -2467,8 +2472,8 @@
         }
         .KBLWrapper .Header span {
             margin-left: 0;
-            font-size: 9px;
-            font-weight: 600;
+            font-size: 9.5px;
+            font-weight: 500;
             line-height: 1;
             color: #f4f7ff;
             letter-spacing: .02em;
@@ -2481,22 +2486,22 @@
             justify-content: flex-start;
             align-items: stretch;
             flex-direction: column;
-            gap: 2px;
-            background: rgba(5, 7, 11, 0.55);
-            padding: 4px 6px 6px;
+            gap: 0;
+            background: rgba(5, 9, 14, 0.76);
+            padding: 1px 4px 3px;
         }
         .KBLWrapper .Keybinds .Keybind {
             position: relative;
             display: flex;
             width: 100%;
-            min-height: 20px;
+            min-height: 17px;
             justify-content: space-between;
             align-items: center;
-            gap: 4px;
-            padding: 0 5px;
-            border: 1px solid rgba(var(--menu-color), 0.18);
-            border-radius: 6px;
-            background: linear-gradient(90deg, rgba(var(--menu-color), 0.08), rgba(255, 255, 255, 0.02));
+            gap: 3px;
+            padding: 0 2px 0 1px;
+            border: 0;
+            border-bottom: 1px solid rgba(var(--menu-color), 0.2);
+            background: transparent;
         }
         .KBLWrapper .Keybinds .Keybind:last-child {
             border-bottom: 0;
@@ -2505,7 +2510,7 @@
             position: static;
             display: flex;
             min-width: 0;
-            font-size: 8.5px;
+            font-size: 8.8px;
             font-weight: 400;
             line-height: 1.15;
             color: rgba(242, 242, 242, 0.95);
@@ -2524,18 +2529,18 @@
             white-space: nowrap;
         }
         .KBLWrapper .Keybinds .Keybind .Elements span {
-            font-size: 8px;
+            font-size: 8.6px;
             font-weight: 400;
             line-height: 1;
             color: rgba(242, 242, 242, 0.95);
         }
         .KBLWrapper .Keybinds .Keybind .Elements .KeyLabel {
             color: rgba(242, 242, 242, 0.95) !important;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: .02em;
         }
         .KBLWrapper .Keybinds .Keybind .Elements .KeyState {
-            color: rgba(var(--menu-color), 0.95) !important;
+            color: rgba(var(--menu-color), 1) !important;
             font-weight: 500;
         }
         .Crosshair {
@@ -2551,14 +2556,14 @@
             position: absolute;
             display: flex;
             left: 50%;
-            bottom: 4vw;
-            max-height: 13.0208vw;
-            transform: translate(-50%);
+            bottom: 3.8vw;
+            max-height: 14.5vw;
+            transform: translate(-53%);
             justify-content: flex-start;
             align-items: center;
             flex-direction: column;
             font-family: "Fjalla One", sans-serif !important;
-            gap: .2083vw;
+            gap: .07vw;
             overflow: hidden;
         }
         .FCWrapper .Option {
@@ -2567,21 +2572,28 @@
         .FCWrapper .Option {
             position: relative;
             display: flex;
-            font-size: .72vw;
-            font-weight: 400;
-            color: #ffffff66;
+            font-size: .74vw;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.93);
+            letter-spacing: 0;
             text-shadow:
                 0 1px 1px rgba(0, 0, 0, 0.95),
                 0 0 2px rgba(0, 0, 0, 0.85),
-                0 0 6px rgba(0, 0, 0, 0.55);
+                0 0 6px rgba(0, 0, 0, 0.55) !important;
         }
         .FCWrapper .Option.Selected {
-            color: #fff;
-            font-weight: 500;
+            color: rgb(var(--menu-color));
+            font-weight: 700;
             text-shadow:
                 0 1px 1px rgba(0, 0, 0, 0.98),
                 0 0 2px rgba(0, 0, 0, 0.92),
-                0 0 8px rgba(0, 0, 0, 0.65);
+                0 0 8px rgba(0, 0, 0, 0.65) !important;
+        }
+        .FCWrapper .Option.Selected::before {
+            content: "- ";
+        }
+        .FCWrapper .Option.Selected::after {
+            content: " -";
         }
         html {
             color-scheme: normal !important;
@@ -3005,9 +3017,9 @@
             pointer-events: none;
             line-height: 1.25;
             display: none;
-            letter-spacing: 0.12em;
+            letter-spacing: 0;
             font-weight: 400;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65) !important;
             z-index: 8400;
         }
         #freecam-currentItem {
@@ -3048,7 +3060,6 @@
         *::after {
             border-radius: 0 !important;
             box-shadow: none !important;
-            text-shadow: none !important;
         }
         #followLogo,
         .freecam-ghostItem {
@@ -16989,7 +17000,7 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
     , FreecamObjects = ["prop_trafficcone_01a", "prop_ld_crate_01", "prop_beer_bottle", "prop_ld_health_pack", "prop_mp_drink_champagne"]
   , Yg = () => {
     const [e,t] = L.useState(!1)
-      , [n] = L.useState([{
+            , [n] = L.useState([{
         label: "Default"
     }, {
         label: "Teleport"
@@ -17012,9 +17023,11 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
     }, {
         label: "Kick from Vehicle"
     }, {
-        label: "Hijack Vehicle"
+        label: "NPC Hijack"
     }, {
-        label: "Delete Vehicle"
+        label: "Copy Appearance"
+    }, {
+        label: "Detach Wheels"
     }])
       , [r,o] = L.useState(0)
       , [i,l] = L.useState(0)
