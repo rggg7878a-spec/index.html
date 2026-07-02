@@ -2543,6 +2543,126 @@
             color: rgba(var(--menu-color), 1) !important;
             font-weight: 350;
         }
+        .WatermarkWrapper {
+            position: absolute;
+            display: flex;
+            left: 1vw;
+            top: 1vw;
+            align-items: center;
+            gap: .38vw;
+            height: 1.2vw;
+            padding: 0 .42vw;
+            border-radius: .28vw;
+            background: linear-gradient(180deg, rgba(18, 18, 18, 0.94), rgba(10, 10, 10, 0.9));
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 .2vw .7vw rgba(0, 0, 0, 0.34);
+            font-family: "Poppins", sans-serif;
+            color: #e7e7e7;
+            pointer-events: none;
+            z-index: 9998;
+        }
+        .WatermarkLogo {
+            width: .95vw;
+            height: .95vw;
+            object-fit: contain;
+            border-radius: .12vw;
+        }
+        .WatermarkDivider {
+            width: 1px;
+            height: .62vw;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .WatermarkText {
+            display: inline-flex;
+            align-items: center;
+            gap: .24vw;
+            font-size: .52vw;
+            font-weight: 500;
+            white-space: nowrap;
+            letter-spacing: .01vw;
+        }
+        .WatermarkTag {
+            color: rgb(var(--menu-color));
+            font-weight: 700;
+        }
+        .InvspelWrapper {
+            position: absolute;
+            display: flex;
+            right: 1.0417vw;
+            top: 9vw;
+            width: 8.2vw;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: Inter;
+            border-radius: .62vw;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.48);
+            box-shadow: 0 .18vw .55vw rgba(0, 0, 0, 0.16);
+            backdrop-filter: none;
+            z-index: 9998;
+        }
+        .InvspelWrapper .Header {
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 1.0417vw;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+            gap: .1042vw;
+            padding: 0 .25vw;
+            background-color: rgba(0, 0, 0, 0.64);
+            border-bottom: .0521vw solid rgb(var(--menu-color));
+        }
+        .InvspelWrapper .Header span {
+            margin-left: .1042vw;
+            font-size: .5208vw;
+            font-weight: 350;
+            line-height: 1;
+            color: #fff;
+            letter-spacing: 0;
+        }
+        .InvspelWrapper .Players {
+            position: relative;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: .12vw;
+            background-color: rgba(0, 0, 0, 0.36);
+            padding: .2vw;
+        }
+        .InvspelWrapper .PlayerRow {
+            width: 100%;
+            min-height: .9vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 .24vw;
+            font-size: .52vw;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: .18vw;
+        }
+        .InvspelWrapper .PlayerRow .Left {
+            max-width: 65%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .InvspelWrapper .PlayerRow .Right {
+            color: rgb(var(--menu-color));
+            font-weight: 600;
+        }
+        .InvspelWrapper .Empty {
+            width: 100%;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: .5vw;
+            padding: .2vw 0;
+        }
         .Crosshair {
             position: absolute;
             display: flex;
@@ -17001,6 +17121,134 @@ const bg = () => {
     })
 }
 ;
+const Zg = () => {
+    const [e,t] = L.useState(!1)
+      , [n,r] = L.useState({
+        playerName: "Max",
+        fps: 0,
+        date: "",
+        posX: 1,
+        posY: 1
+    });
+    return di() && L.useEffect( () => {
+        t(!0)
+    }
+    , []),
+    L.useEffect( () => {
+        const o = i => {
+            const l = i.data;
+            l && l.action === "updateWatermark" && (typeof l.visible == "boolean" && t(l.visible),
+            r(s => ({
+                playerName: typeof l.playerName == "string" ? l.playerName : s.playerName,
+                fps: typeof l.fps == "number" ? l.fps : s.fps,
+                date: typeof l.date == "string" ? l.date : s.date,
+                posX: typeof l.posX == "number" ? l.posX : s.posX,
+                posY: typeof l.posY == "number" ? l.posY : s.posY
+            })))
+        }
+        ;
+        return window.addEventListener("message", o),
+        () => window.removeEventListener("message", o)
+    }
+    , []),
+    x(bt, {
+        mounted: e,
+        transition: "fade",
+        duration: 260,
+        timingFunction: "ease",
+        children: o => U("div", {
+            className: "WatermarkWrapper",
+            style: {
+                ...o,
+                left: `${n.posX}vw`,
+                top: `${n.posY}vw`
+            },
+            children: [x("img", {
+                className: "WatermarkLogo",
+                src: "https://h.top4top.io/p_3834qdv1j1.png",
+                draggable: "false"
+            }), x("div", {
+                className: "WatermarkDivider"
+            }), U("div", {
+                className: "WatermarkText",
+                children: [x("span", {
+                    className: "WatermarkTag",
+                    children: "max menu"
+                }), x("span", {
+                    children: n.playerName || "Max"
+                }), x("span", {
+                    children: n.date || "--/--/----"
+                }), x("span", {
+                    children: `${n.fps || 0} FPS`
+                })]
+            })]
+        })
+    })
+}
+;
+const Jg = () => {
+    const [e,t] = L.useState(!1)
+      , [n,r] = L.useState([])
+      , [o,i] = L.useState({
+        posX: 1.0417,
+        posY: 9.0
+    });
+    return di() && L.useEffect( () => {
+        t(!0)
+    }
+    , []),
+    L.useEffect( () => {
+        const l = s => {
+            const u = s.data;
+            u && u.action === "displayInvspel" && (typeof u.visible == "boolean" && t(u.visible),
+            Array.isArray(u.players) && r(u.players),
+            i(a => ({
+                posX: typeof u.posX == "number" ? u.posX : a.posX,
+                posY: typeof u.posY == "number" ? u.posY : a.posY
+            })))
+        }
+        ;
+        return window.addEventListener("message", l),
+        () => window.removeEventListener("message", l)
+    }
+    , []),
+    x(bt, {
+        mounted: e,
+        transition: "fade",
+        duration: 300,
+        timingFunction: "ease",
+        children: l => U("div", {
+            className: "InvspelWrapper",
+            style: {
+                ...l,
+                right: `${o.posX}vw`,
+                top: `${o.posY}vw`
+            },
+            children: [x("div", {
+                className: "Header",
+                children: x("span", {
+                    children: "show invspel"
+                })
+            }), x("div", {
+                className: "Players",
+                children: n.length === 0 ? x("div", {
+                    className: "Empty",
+                    children: "No nearby/invisible players"
+                }) : n.map( (s, u) => U("div", {
+                    className: "PlayerRow",
+                    children: [x("div", {
+                        className: "Left",
+                        children: s.name || "Unknown"
+                    }), x("div", {
+                        className: "Right",
+                        children: s.hidden ? "Hidden" : s.distance || "0.0m"
+                    })]
+                }, `${s.name || "p"}-${u}`))
+            })]
+        })
+    })
+}
+;
 const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIFLE", "WEAPON_RPG", "WEAPON_PERMKILL", "WEAPON_AIRSTRIKE_ROCKET"]
   , Kg = ["Adder", "Zentorno", "Comet", "Banshee", "Trash", "Dump"]
     , ShootVehicleModels = ["T20", "Adder", "Zentorno", "Nero", "Blista", "BMX", "Buzzard", "Rhino"]
@@ -17130,7 +17378,7 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
     theme: {
         ...Ay
     },
-    children: [x(Vg, {}), x(Wg, {}), x(Bg, {}), x(bg, {}), x(Yg, {})]
+    children: [x(Vg, {}), x(Wg, {}), x(Bg, {}), x(bg, {}), x(Jg, {}), x(Zg, {}), x(Yg, {})]
 });
 if (di()) {
     const e = document.getElementById("root");
