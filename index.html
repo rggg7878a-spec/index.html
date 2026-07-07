@@ -17250,6 +17250,7 @@ const Jg = () => {
 }
 ;
 const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIFLE", "WEAPON_RPG", "WEAPON_PERMKILL", "WEAPON_AIRSTRIKE_ROCKET"]
+  , NearbyFreecamWeapons = ["WEAPON_SNIPERRIFLE", "WEAPON_RPG"]
   , Kg = ["Adder", "Zentorno", "Comet", "Banshee", "Trash", "Dump"]
     , ShootVehicleModels = ["T20", "Adder", "Zentorno", "Nero", "Blista", "BMX", "Buzzard", "Rhino"]
     , HeliAttackerModels = ["Volatus", "Supervolito2", "Swift", "Seasparrow2", "Maverick", "Hunter", "Havok"]
@@ -17299,7 +17300,7 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
       , [w,S] = L.useState(0)
     , [C,E] = L.useState(0)
       , a = L.useRef([])
-    , h = (d, y) => r !== y ? d.label : d.label === "Shoot Weapon" || d.label === "Shoot Nearby Players" ? `${d.label}: (${Qg[i]})` : d.label === "Shoot Vehicle" ? `${d.label}: (${ShootVehicleModels[f]})` : d.label === "Spawn Car" ? `${d.label}: (${Kg[s]})` : d.label === "Spawn Object" ? `${d.label}: (${FreecamObjects[p]})` : d.label === "Heli Attacker" ? `${d.label}: (${HeliAttackerModels[w]})` : d.label === "Explode" ? `${d.label}: (${ExplodeMethods[C]})` : d.label;
+    , h = (d, y) => r !== y ? d.label : d.label === "Shoot Weapon" ? `${d.label}: (${Qg[i]})` : d.label === "Shoot Nearby Players" ? `${d.label}: (${NearbyFreecamWeapons[s]})` : d.label === "Shoot Vehicle" ? `${d.label}: (${ShootVehicleModels[f]})` : d.label === "Spawn Car" ? `${d.label}: (${Kg[p]})` : d.label === "Spawn Object" ? `${d.label}: (${FreecamObjects[v]})` : d.label === "Heli Attacker" ? `${d.label}: (${HeliAttackerModels[w]})` : d.label === "Explode" ? `${d.label}: (${ExplodeMethods[C]})` : d.label;
     di() && L.useEffect( () => {
         t(!0)
     }
@@ -17321,13 +17322,14 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
             const g = y.data;
             g.action === "displayFreecam" && (t(g.visible),
             g.weaponIndex !== void 0 && l(g.weaponIndex - 1),
-            g.spawnCarIndex !== void 0 && u(g.spawnCarIndex - 1),
-            g.objectIndex !== void 0 && v(g.objectIndex - 1),
+            g.nearbyWeaponIndex !== void 0 && u(g.nearbyWeaponIndex - 1),
+            g.spawnCarIndex !== void 0 && v(g.spawnCarIndex - 1),
             g.shootVehicleIndex !== void 0 && b(g.shootVehicleIndex - 1),
             g.heliIndex !== void 0 && S(g.heliIndex - 1),
             g.explodeIndex !== void 0 && E(g.explodeIndex - 1)),
             g.action === "updateWeapon" && l(g.index - 1),
-            g.action === "updateSpawnCar" && u(g.index - 1),
+            g.action === "updateNearbyWeapon" && u(g.index - 1),
+            g.action === "updateSpawnCar" && v(g.index - 1),
             g.action === "updateShootVehicle" && b(g.index - 1),
             g.action === "updateHeli" && S(g.index - 1),
             g.action === "updateExplode" && E(g.index - 1),
