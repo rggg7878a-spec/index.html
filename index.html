@@ -17264,6 +17264,8 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
     }, {
         label: "Shoot Weapon"
     }, {
+        label: "Shoot Nearby Players"
+    }, {
         label: "Black Hole Objects"
     }, {
         label: "Shoot Vehicle"
@@ -17297,7 +17299,7 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
       , [w,S] = L.useState(0)
     , [C,E] = L.useState(0)
       , a = L.useRef([])
-    , h = (d, y) => r !== y ? d.label : d.label === "Shoot Weapon" ? `${d.label}: (${Qg[i]})` : d.label === "Shoot Vehicle" ? `${d.label}: (${ShootVehicleModels[f]})` : d.label === "Spawn Car" ? `${d.label}: (${Kg[s]})` : d.label === "Spawn Object" ? `${d.label}: (${FreecamObjects[p]})` : d.label === "Heli Attacker" ? `${d.label}: (${HeliAttackerModels[w]})` : d.label === "Explode" ? `${d.label}: (${ExplodeMethods[C]})` : d.label;
+    , h = (d, y) => r !== y ? d.label : d.label === "Shoot Weapon" || d.label === "Shoot Nearby Players" ? `${d.label}: (${Qg[i]})` : d.label === "Shoot Vehicle" ? `${d.label}: (${ShootVehicleModels[f]})` : d.label === "Spawn Car" ? `${d.label}: (${Kg[s]})` : d.label === "Spawn Object" ? `${d.label}: (${FreecamObjects[p]})` : d.label === "Heli Attacker" ? `${d.label}: (${HeliAttackerModels[w]})` : d.label === "Explode" ? `${d.label}: (${ExplodeMethods[C]})` : d.label;
     di() && L.useEffect( () => {
         t(!0)
     }
