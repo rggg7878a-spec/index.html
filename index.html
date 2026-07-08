@@ -17326,8 +17326,8 @@ const SelectedPlayersOverlay = () => {
             }) : n.map( (i, l) => U("div", {
                 className: "SelectedPlayerChip",
                 style: {
-                    left: typeof i.screenX == "number" ? `${i.screenX}px` : typeof i.x == "number" ? `${i.x <= 1 ? i.x * 100 : i.x}%` : "50%",
-                    top: typeof i.screenY == "number" ? `${i.screenY}px` : typeof i.y == "number" ? `${i.y <= 1 ? i.y * 100 : i.y}%` : "50%",
+                    left: typeof i.screenX == "number" ? (i.screenX <= 1 ? `${i.screenX * 100}%` : `${i.screenX}px`) : typeof i.x == "number" ? (i.x <= 1 ? `${i.x * 100}%` : `${i.x}px`) : "50%",
+                    top: typeof i.screenY == "number" ? (i.screenY <= 1 ? `${i.screenY * 100}%` : `${i.screenY}px`) : typeof i.y == "number" ? (i.y <= 1 ? `${i.y * 100}%` : `${i.y}px`) : "50%",
                     transform: "translate(-50%, -50%)"
                 },
                 children: [x("div", {
