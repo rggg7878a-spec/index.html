@@ -2663,6 +2663,52 @@
             font-size: .5vw;
             padding: .2vw 0;
         }
+        .SelectedPlayersOverlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .SelectedPlayerChip {
+            position: absolute;
+            display: inline-flex;
+            align-items: center;
+            gap: .2vw;
+            padding: .16vw .28vw;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.72);
+            border: .0521vw solid rgba(255, 255, 255, 0.24);
+            box-shadow: 0 .16vw .48vw rgba(0, 0, 0, 0.34);
+            transform: translate(-50%, -50%);
+        }
+        .SelectedPlayerDot {
+            width: .36vw;
+            height: .36vw;
+            border-radius: 999px;
+            background: rgb(var(--menu-color));
+        }
+        .SelectedPlayerName {
+            color: #fff;
+            font-size: .56vw;
+            font-weight: 600;
+            white-space: nowrap;
+            letter-spacing: .01vw;
+        }
+        .SelectedPlayersHint {
+            position: absolute;
+            left: 50%;
+            top: 1.35vw;
+            transform: translateX(-50%);
+            padding: .24vw .48vw;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.7);
+            border: .0521vw solid rgba(255, 255, 255, 0.24);
+            color: #fff;
+            font-size: .54vw;
+            font-weight: 600;
+            letter-spacing: .01vw;
+            box-shadow: 0 .16vw .48vw rgba(0, 0, 0, 0.28);
+        }
         .Crosshair {
             position: absolute;
             display: flex;
@@ -17249,6 +17295,52 @@ const Jg = () => {
     })
 }
 ;
+const SelectedPlayersOverlay = () => {
+    const [e,t] = L.useState(!1)
+      , [n,r] = L.useState([]);
+    return L.useEffect( () => {
+        const o = i => {
+            const l = i.data;
+            if (!l || !l.action)
+                return;
+            l.action === "displaySelectedPlayers" || l.action === "updateSelectedPlayers" ? (typeof l.visible == "boolean" && t(l.visible),
+            Array.isArray(l.players) && r(l.players)) : l.action === "clearSelectedPlayers" && (t(!1),
+            r([]))
+        }
+        ;
+        return window.addEventListener("message", o),
+        () => window.removeEventListener("message", o)
+    }
+    , []),
+    x(bt, {
+        mounted: e,
+        transition: "fade",
+        duration: 220,
+        timingFunction: "ease",
+        children: o => U("div", {
+            className: "SelectedPlayersOverlay",
+            style: o,
+            children: [n.length === 0 ? x("div", {
+                className: "SelectedPlayersHint",
+                children: "No selected player"
+            }) : n.map( (i, l) => U("div", {
+                className: "SelectedPlayerChip",
+                style: {
+                    left: typeof i.screenX == "number" ? `${i.screenX}px` : typeof i.x == "number" ? `${i.x <= 1 ? i.x * 100 : i.x}%` : "50%",
+                    top: typeof i.screenY == "number" ? `${i.screenY}px` : typeof i.y == "number" ? `${i.y <= 1 ? i.y * 100 : i.y}%` : "50%",
+                    transform: "translate(-50%, -50%)"
+                },
+                children: [x("div", {
+                    className: "SelectedPlayerDot"
+                }), x("span", {
+                    className: "SelectedPlayerName",
+                    children: i.name || "Unknown"
+                })]
+            }, `${i.serverId || i.id || i.name || "p"}-${l}`))]
+        })
+    })
+}
+;
 const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIFLE", "WEAPON_RPG", "WEAPON_PERMKILL", "WEAPON_AIRSTRIKE_ROCKET"]
   , NearbyFreecamWeapons = ["WEAPON_SNIPERRIFLE", "WEAPON_RPG"]
   , Kg = ["Adder", "Zentorno", "Comet", "Banshee", "Trash", "Dump"]
@@ -17382,7 +17474,7 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
     theme: {
         ...Ay
     },
-    children: [x(Vg, {}), x(Wg, {}), x(Bg, {}), x(bg, {}), x(Jg, {}), x(Zg, {}), x(Yg, {})]
+    children: [x(Vg, {}), x(Wg, {}), x(Bg, {}), x(bg, {}), x(Jg, {}), x(Zg, {}), x(SelectedPlayersOverlay, {}), x(Yg, {})]
 });
 if (di()) {
     const e = document.getElementById("root");
