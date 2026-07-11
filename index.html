@@ -1402,16 +1402,16 @@
         .PWrapper .PElements .PScroll {
             position: absolute;
             display: flex;
-            left: -0.65vw;
-            width: 0.35vw;
+            left: -0.48vw;
+            width: 0.18vw;
             top: 0;
             bottom: 0;
             height: 100%;
-            background-color: #1d1d1d98;
+            background-color: rgba(255, 255, 255, 0.14);
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            border-radius: 0.10vw;
+            border-radius: 999px;
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -1444,7 +1444,7 @@
         .PWrapper .PElements .PScroll .PSProgressWrapper {
             position: relative;
             display: flex;
-            width: 0.35vw;
+            width: 0.18vw;
             height: 100%;
             top: 0;
             bottom: 0;
@@ -1453,7 +1453,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-shadow: 0 2px 8px 0 #000000;
+            box-shadow: none;
         }
         /* Global Scrollbar */
         ::-webkit-scrollbar {
@@ -1470,10 +1470,10 @@
         .PWrapper .PElements .PScroll .PSProgress {
             position: relative;
             display: flex;
-            width: .5vw;
-            margin-top: .1302vw;
-            border-radius: 0.09vw;
-            background-color: rgb(var(--menu-color));
+            width: .22vw;
+            margin-top: .08vw;
+            border-radius: 999px;
+            background-color: rgba(var(--menu-color), 0.9);
             transition: top .15s ease, height .15s ease;
         }
         .PWrapper .PElements .PRightElements {
@@ -1483,11 +1483,11 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            background: rgba(8, 8, 8, 0.80);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 2.5vw;
+            background: rgba(12, 13, 16, 0.66);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 0;
             overflow: hidden;
-            backdrop-filter: blur(18px);
+            backdrop-filter: blur(12px) saturate(125%);
             box-shadow:
                 0 0 1.4vw rgba(255, 255, 255, 0.08),
                 0 0 1.2vw rgba(var(--menu-color), 0.18),
@@ -1502,7 +1502,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            border-radius: .62vw .62vw 0 0;
+            border-radius: 1.4vw 1.4vw 0 0 !important;
         }
         .PWrapper .PBanner img {
             position: absolute;
@@ -1510,7 +1510,7 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            border-radius: .62vw .62vw 0 0;
+            border-radius: 1.4vw 1.4vw 0 0 !important;
         }
         .PWrapper .SantaHat {
             position: absolute;
@@ -1525,18 +1525,18 @@
             position: relative;
             display: flex;
             width: 100%;
-            height: 1.08vw;
+            height: 1.34vw;
             margin-bottom: 0;
             justify-content: center;
             align-items: center;
             flex-direction: row;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-bottom-left-radius: 999px;
-            border-bottom-right-radius: 999px;
-            backdrop-filter: blur(18px);
-            overflow: hidden;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+            gap: .12vw;
+            padding: .12vw .16vw;
+            background: rgba(0, 0, 0, 0.22);
+            border: 0;
+            border-radius: 0;
+            backdrop-filter: blur(10px);
+            overflow: visible;
         }
         .PWrapper .PCategories .PCategory {
             position: relative;
@@ -1549,15 +1549,15 @@
             font-size: .57vw;
             font-weight: 400;
             color: #fff;
-            border-radius: 999px;
-            transition: background 220ms ease, color 220ms ease;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: .14vw;
+            background: rgba(255, 255, 255, 0.07);
+            transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
         }
         .PWrapper .PCategories .PCategory.active {
-            background: linear-gradient(180deg,
-                rgba(var(--menu-color), 0.92) 0%,
-                rgba(var(--menu-color), 0.70) 42%,
-                rgba(var(--menu-color), 0.48) 100%);
-            box-shadow: inset 0 0 0.75vw rgba(var(--menu-color), 0.16);
+            background: rgb(var(--menu-color));
+            border-color: rgba(255, 255, 255, 0.32);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
         }
         .PWrapper .PBanner::after {
             content: "";
@@ -1579,18 +1579,15 @@
             text-align: center;
         }
         .PWrapper .PCategories .PCategory.active {
-                background: linear-gradient(180deg,
-                    rgba(var(--menu-color), 0.88) 0%,
-                    rgba(var(--menu-color), 0.72) 42%,
-                    rgba(var(--menu-color), 0.52) 100%);
+                background: rgb(var(--menu-color));
         }
         .PWrapper .PCategories .PCategory:only-child {
-            position: absolute;
+            position: relative;
             display: flex;
-            left: 0vw;
+            left: auto;
             font-size: .625vw;
-            padding: 0 .8vw;
-            justify-content: flex-start;
+            padding: 0 .4vw;
+            justify-content: center;
         }
         .PWrapper .PCategories .PCategory:last-child {
             border-right: none;
@@ -1607,7 +1604,7 @@
             flex-direction: column;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 999px;
+            border-radius: 0;
             backdrop-filter: blur(18px);
             overflow-y: hidden;
             transition: height 220ms ease, max-height 220ms ease, background-color 220ms ease;
@@ -1674,6 +1671,7 @@
             position: absolute;
             display: flex;
             left: .25vw;
+            width: 60%;
             font-size: .625vw;
             color: #fff;
             line-height: 1;
@@ -1688,19 +1686,22 @@
             position: absolute;
             display: flex;
             right: .65vw;
-            font-size: .625vw;
-            color: #fff;
+            width: .45vw;
+            height: .45vw;
+            font-size: .5vw;
+            color: rgba(255, 255, 255, 0.58);
             align-items: center;
             justify-content: center;
             align-items: center;
             justify-content: center;
-            transition: color 200ms ease;
-            stroke-width: 1.5;
+            transition: color 160ms ease, transform 160ms ease;
+            stroke-width: 2;
             font-weight: 350;
         }
         .PWrapper .PTabs .PTab.active i,
         .PWrapper .PTabs .PTab.active svg {
-            color: #fff;
+            color: rgb(var(--menu-color));
+            transform: translateX(.08vw);
         }
         .PWrapper .PTabs .PTab .TOptions {
             position: absolute;
@@ -1733,9 +1734,10 @@
             height: .7813vw;
             justify-content: center;
             align-items: center;
-            background-color: #1e1e1e;
+            background-color: #3d3d3d;
             margin-right: 0;
-            border-radius: 5vw;
+            border-radius: 999px !important;
+            overflow: hidden;
         }
         .PWrapper .PTabs .PTab .TOptions .Checkbox.Checked {
             background: rgb(var(--menu-color));
@@ -1747,12 +1749,11 @@
             position: absolute;
             display: flex;
             left: .15vw;
-            margin-bottom: .065vw;
             width: .4167vw;
             height: .4167vw;
             background-color: #fff;
-            border-radius: .2604vw;
-            transition: .25s all;
+            border-radius: 50% !important;
+            transition: left 180ms ease, background-color 180ms ease;
         }
         .PWrapper .PTabs .PTab .TOptions .Slider {
             position: relative;
@@ -1795,8 +1796,9 @@
             height: .7813vw;
             justify-content: center;
             align-items: center;
-            background-color: #1e1e1e;
-            border-radius: 5vw;
+            background-color: #3d3d3d;
+            border-radius: 999px !important;
+            overflow: hidden;
         }
         .PWrapper .PTabs .PTab .Checkbox.Checked {
             background: rgb(var(--menu-color));
@@ -1808,12 +1810,11 @@
             position: absolute;
             display: flex;
             left: .15vw;
-            margin-bottom: .065vw;
             width: .4167vw;
             height: .4167vw;
             background-color: #fff;
-            border-radius: .2604vw;
-            transition: .25s all;
+            border-radius: 50% !important;
+            transition: left 180ms ease, background-color 180ms ease;
         }
         .PWrapper .PTabs .PTab .Slider {
             position: absolute;
@@ -1853,8 +1854,9 @@
         }
         .PWrapper .PTabs .PTab .TOptions .Slider,
         .PWrapper .PTabs .PTab .Slider {
-            background-color: rgba(255, 255, 255, 0.15) !important;
-            height: 0.20vw !important;
+            background-color: rgba(255, 255, 255, 0.32) !important;
+            height: 0.12vw !important;
+            border-radius: 0 !important;
         }
         .PWrapper .PTabs .PTab .TOptions .Slider .Progress {
             position: absolute;
@@ -1863,6 +1865,7 @@
             justify-content: center;
             align-items: center;
             background: #ffffff;
+            border-radius: 0;
         }
         .PWrapper .PTabs .PTab .TOptions .Slider .Progress .Thumb {
             display: block;
@@ -1870,13 +1873,13 @@
             right: 0;
             top: 50%;
             transform: translate(50%, -50%);
-            width: 0.35vw;
-            height: 0.35vw;
+            width: 0.18vw;
+            height: 0.38vw;
             min-width: 5px;
             min-height: 5px;
             background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+            border-radius: 0;
+            box-shadow: none;
         }
         .PWrapper .PTabs .PTab .Scrollable {
             position: absolute;
@@ -1905,10 +1908,10 @@
         .PWrapper .PTabs .PTab .Divider .Right {
             position: relative;
             display: flex;
-            width: 40%;
-            height: .1500vw;
-            background-color: rgb(211, 211, 211);
-            border-radius: 2.5vw;
+            width: 38%;
+            height: .11vw;
+            background-color: rgba(255, 255, 255, 0.68);
+            border-radius: 999px;
             min-width: 0;
         }
         .PWrapper .PTabs .PTab .Divider .Label {
@@ -1916,9 +1919,37 @@
             display: flex;
             font-size: .625vw;
             font-weight: 400;
-            color: rgb(211, 211, 211);
+            color: rgba(255, 255, 255, 0.82);
             white-space: nowrap;
             padding: 0 .5vw;
+        }
+        .PWrapper .PTabs .PTab.active .Divider .Left,
+        .PWrapper .PTabs .PTab.active .Divider .Right {
+            background-color: #fff;
+        }
+        .PWrapper .PTabs .PTab.active .Divider .Label {
+            color: #fff;
+        }
+        .PWrapper .PTabs {
+            gap: .06vw;
+            padding: .06vw 0;
+        }
+        .PWrapper .PTabs .PTab {
+            margin: 0 .15vw;
+            height: 1.48vw;
+            min-height: 1.48vw;
+            max-height: 1.48vw;
+        }
+        .PWrapper .PTabs .PTab .TOptions .Slider .Progress,
+        .PWrapper .PTabs .PTab .Slider .Progress {
+            border-radius: 0;
+        }
+        .PWrapper .PTabs .PTab .TOptions .Slider .Progress .Thumb,
+        .PWrapper .PTabs .PTab .Slider .Progress .Thumb {
+            width: .18vw;
+            height: .38vw;
+            border-radius: 0;
+            box-shadow: none;
         }
         .PWrapper .Metadata {
             position: absolute;
@@ -2162,22 +2193,22 @@
         }
         .NotificationsWrapper {
             position: fixed;
-            right: 1.2vw;
-            bottom: 1.2vw;
+            right: .8vw;
+            bottom: .8vw;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 0.8vw;
+            gap: .3vw;
             z-index: 9999;
             pointer-events: none;
-            width: min(100%, 240px);
+            width: 9.6vw;
             background: transparent !important;
         }
         .Notification {
             --accent: 236, 198, 67;
             width: 100%;
-            min-height: 60px;
-            padding: 12px 12px 12px 14px;
+            min-height: 2.25vw;
+            padding: .32vw .42vw .38vw .48vw;
             display: flex;
             align-items: center;
             position: relative;
@@ -2185,13 +2216,11 @@
             overflow: hidden;
             color: #f4f4f4;
             font-family: "Poppins", sans-serif;
-            background: rgba(12, 14, 22, 0.94);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            box-shadow:
-                0 14px 28px rgba(0, 0, 0, 0.18),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
+            background: rgba(12, 13, 16, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: .16vw;
+            box-shadow: 0 .16vw .5vw rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(10px) saturate(120%);
             opacity: 0;
             transform: translateX(18px) scale(0.98);
             transition: transform 0.2s ease, opacity 0.18s ease;
@@ -2207,27 +2236,28 @@
         }
         .NotificationAccent {
             position: absolute;
-            inset: 0;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: .1vw;
             pointer-events: none;
-            background: linear-gradient(135deg, rgba(var(--accent), 0.16), transparent 48%);
-            mix-blend-mode: screen;
+            background: rgb(var(--accent));
         }
         .NotificationIcon {
             position: relative;
             z-index: 2;
             flex-shrink: 0;
-            width: 24px;
-            height: 24px;
+            width: .78vw;
+            height: .78vw;
             display: grid;
             place-items: center;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            background: rgba(var(--accent), 0.14);
+            border: 1px solid rgba(var(--accent), 0.35);
         }
         .NotificationIcon::before {
             content: "!";
-            font-size: 0.8rem;
+            font-size: .5vw;
             font-weight: 800;
             color: rgba(var(--accent), 1);
         }
@@ -2235,11 +2265,11 @@
             position: relative;
             z-index: 2;
             flex-shrink: 0;
-            width: 38px;
-            height: 38px;
+            width: .92vw;
+            height: .92vw;
             display: grid;
             place-items: center;
-            border-radius: 12px;
+            border-radius: 50%;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
             background-size: cover;
@@ -2252,19 +2282,19 @@
             display: flex;
             flex-direction: column;
             width: 100%;
-            gap: 6px;
+            gap: .08vw;
             min-width: 0;
         }
         .NotificationHeader {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: .18vw;
         }
         .NotificationTitle {
-            font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 0.03em;
+            font-size: .48vw;
+            font-weight: 650;
+            letter-spacing: 0;
             color: #ffffff;
             text-transform: uppercase;
             white-space: nowrap;
@@ -2272,7 +2302,7 @@
             text-overflow: ellipsis;
         }
         .NotificationTypeLabel {
-            display: inline-flex;
+            display: none;
             align-items: center;
             justify-content: center;
             min-width: 42px;
@@ -2288,10 +2318,10 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .NotificationMessage {
-            font-size: 0.72rem;
-            line-height: 1.35;
+            font-size: .42vw;
+            line-height: 1.2;
             color: rgba(245, 247, 252, 0.92);
-            max-height: 2.8em;
+            max-height: 2.4em;
             overflow: hidden;
             text-overflow: ellipsis;
         }
@@ -2316,11 +2346,11 @@
         }
         .NotificationProgress {
             position: absolute;
-            bottom: 8px;
-            left: 10px;
-            right: 10px;
-            height: 2px;
-            border-radius: 999px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: .08vw;
+            border-radius: 0;
             background: rgba(255, 255, 255, 0.08);
             overflow: hidden;
             z-index: 2;
@@ -2329,7 +2359,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, rgba(var(--accent), 1), rgba(var(--accent), 0.45));
+            background: rgb(var(--accent));
             transform-origin: left center;
             animation: notificationProgress 1 linear forwards;
         }
@@ -2649,41 +2679,50 @@
             left: 1vw;
             top: 1vw;
             align-items: center;
-            gap: .38vw;
-            height: 1.2vw;
-            padding: 0 .42vw;
-            border-radius: .28vw;
-            background: linear-gradient(180deg, rgba(18, 18, 18, 0.94), rgba(10, 10, 10, 0.9));
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            box-shadow: 0 .2vw .7vw rgba(0, 0, 0, 0.34);
+            gap: .3vw;
+            height: 1.32vw;
+            padding: 0 .48vw 0 .22vw;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-left: .12vw solid rgb(var(--menu-color));
+            border-radius: .16vw;
+            background: rgba(12, 13, 16, 0.72);
+            backdrop-filter: blur(10px) saturate(120%);
+            box-shadow: 0 .16vw .55vw rgba(0, 0, 0, 0.3);
             font-family: "Poppins", sans-serif;
             color: #e7e7e7;
             pointer-events: none;
             z-index: 9998;
         }
         .WatermarkLogo {
-            width: .95vw;
-            height: .95vw;
+            width: .86vw;
+            height: .86vw;
             object-fit: contain;
-            border-radius: .12vw;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
         }
         .WatermarkDivider {
             width: 1px;
-            height: .62vw;
-            background: rgba(255, 255, 255, 0.2);
+            height: .72vw;
+            background: rgba(255, 255, 255, 0.16);
         }
         .WatermarkText {
             display: inline-flex;
             align-items: center;
-            gap: .24vw;
-            font-size: .52vw;
-            font-weight: 500;
+            gap: .28vw;
+            font-size: .54vw;
+            font-weight: 450;
             white-space: nowrap;
             letter-spacing: .01vw;
         }
         .WatermarkTag {
-            color: rgb(var(--menu-color));
+            color: #fff;
             font-weight: 700;
+            text-transform: uppercase;
+        }
+        .WatermarkText span + span {
+            padding-left: .28vw;
+            border-left: 1px solid rgba(255, 255, 255, 0.14);
+            color: rgba(255, 255, 255, 0.72);
         }
         .InvspelWrapper {
             position: absolute;
@@ -17033,6 +17072,18 @@ const i = `${o.type || "info"}::${o.title || "Notification"}::${o.desc || ""}`;
         ;
         return window.addEventListener("message", o),
         () => window.removeEventListener("message", o)
+    }
+    , [n]),
+    L.useEffect( () => {
+        if (typeof window.GetParentResourceName == "function")
+            return;
+        const o = window.setTimeout( () => n({
+            type: "info",
+            title: "Lord Menu",
+            desc: "Notification preview",
+            duration: 12e3
+        }), 350);
+        return () => window.clearTimeout(o)
     }
     , [n]),
     x("div", {
