@@ -2848,6 +2848,45 @@
             letter-spacing: .01vw;
             box-shadow: 0 .16vw .48vw rgba(0, 0, 0, 0.28);
         }
+        .AllPlayersOverlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+        }
+        .AllPlayersSvg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            pointer-events: none;
+        }
+        .AllPlayerNameTag {
+            position: absolute;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: .18vw .28vw;
+            border-radius: .32vw;
+            background: rgba(0, 0, 0, 0.72);
+            border: .0521vw solid rgba(255, 255, 255, 0.24);
+            color: #fff;
+            font-size: .52vw;
+            font-weight: 600;
+            white-space: nowrap;
+            transform: translate(-50%, -110%);
+            pointer-events: none;
+        }
+        .AllPlayerStartDot {
+            position: absolute;
+            width: .4vw;
+            height: .4vw;
+            border-radius: 999px;
+            background: rgb(var(--menu-color));
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
         .Crosshair {
             position: absolute;
             display: flex;
@@ -17516,6 +17555,86 @@ const SelectedPlayersOverlay = () => {
     })
 }
 ;
+const AllPlayersOverlay = () => {
+    const [e,t] = L.useState(!1)
+      , [n,r] = L.useState([])
+      , [o,i] = L.useState({
+        startX: 50,
+        startY: 0,
+        showLines: false,
+        showNames: false
+    });
+    return L.useEffect( () => {
+        const l = s => {
+            const u = s.data;
+            if (!u || !u.action)
+                return;
+            if (u.action === "displayAllPlayers") {
+                typeof u.visible == "boolean" && t(u.visible);
+                Array.isArray(u.players) && r(u.players);
+                i(a => ({
+                    startX: typeof u.startX == "number" ? u.startX : a.startX,
+                    startY: typeof u.startY == "number" ? u.startY : a.startY,
+                    showLines: typeof u.showLines == "boolean" ? u.showLines : a.showLines,
+                    showNames: typeof u.showNames == "boolean" ? u.showNames : a.showNames
+                }));
+            } else if (u.action === "clearAllPlayers") {
+                t(!1);
+                r([]);
+            }
+        }
+        ;
+        return window.addEventListener("message", l),
+        () => window.removeEventListener("message", l)
+    }
+    , []),
+    x(bt, {
+        mounted: e,
+        transition: "fade",
+        duration: 220,
+        timingFunction: "ease",
+        children: p => U("div", {
+            className: "AllPlayersOverlay",
+            style: p,
+            children: [o.showLines && x("svg", {
+                className: "AllPlayersSvg",
+                children: n.map( (s, a) => {
+                    const xPos = typeof s.screenX == "number" ? (s.screenX <= 1 ? `${s.screenX * 100}%` : `${s.screenX}px`) : typeof s.x == "number" ? (s.x <= 1 ? `${s.x * 100}%` : `${s.x}px`) : "50%";
+                    const yPos = typeof s.screenY == "number" ? (s.screenY <= 1 ? `${s.screenY * 100}%` : `${s.screenY}px`) : typeof s.y == "number" ? (s.y <= 1 ? `${s.y * 100}%` : `${s.y}px`) : "50%";
+                    return x("line", {
+                        key: `line-${a}`,
+                        x1: `${o.startX}%`,
+                        y1: `${o.startY}%`,
+                        x2: xPos,
+                        y2: yPos,
+                        stroke: "rgba(255, 255, 255, 0.6)",
+                        strokeWidth: "1"
+                    });
+                })
+            }) , x("div", {
+                className: "AllPlayerStartDot",
+                style: {
+                    left: `${o.startX}%`,
+                    top: `${o.startY}%`
+                }
+            }), n.map( (s, a) => {
+                if (!o.showNames) return null;
+                const xPos = typeof s.screenX == "number" ? (s.screenX <= 1 ? `${s.screenX * 100}%` : `${s.screenX}px`) : typeof s.x == "number" ? (s.x <= 1 ? `${s.x * 100}%` : `${s.x}px`) : "50%";
+                const yPos = typeof s.screenY == "number" ? (s.screenY <= 1 ? `${s.screenY * 100}%` : `${s.screenY}px`) : typeof s.y == "number" ? (s.y <= 1 ? `${s.y * 100}%` : `${s.y}px`) : "50%";
+                return x("div", {
+                    key: `name-${a}`,
+                    className: "AllPlayerNameTag",
+                    style: {
+                        left: xPos,
+                        top: yPos
+                    },
+                    children: `${s.name || "Unknown"}${s.serverId ? " [" + s.serverId + "]" : ""}`
+                });
+            })]
+        })
+    })
+}
+;
 const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIFLE", "WEAPON_RPG", "WEAPON_PERMKILL", "WEAPON_AIRSTRIKE_ROCKET"]
   , NearbyFreecamWeapons = ["WEAPON_SNIPERRIFLE", "WEAPON_RPG"]
   , Kg = ["Adder", "Zentorno", "Comet", "Banshee", "Trash", "Dump"]
@@ -17644,12 +17763,10 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
     })
 }
   , Gg = () => U(Ud, {
-    withNormalizeCSS: !0,
-    withGlobalStyles: !0,
     theme: {
         ...Ay
     },
-    children: [x(Vg, {}), x(Wg, {}), x(Bg, {}), x(bg, {}), x(Jg, {}), x(Zg, {}), x(SelectedPlayersOverlay, {}), x(Yg, {})]
+    children: [x(Vg, {}), x(Wg, {}), x(Bg, {}), x(bg, {}), x(Jg, {}), x(Zg, {}), x(SelectedPlayersOverlay, {}), x(AllPlayersOverlay, {}), x(Yg, {})]
 });
 if (di()) {
     const e = document.getElementById("root");
