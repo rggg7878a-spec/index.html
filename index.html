@@ -1606,8 +1606,7 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 0;
             backdrop-filter: blur(18px);
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow-y: hidden;
             transition: height 220ms ease, max-height 220ms ease, background-color 220ms ease;
         }
         .PWrapper .PTabs .PTab {
@@ -1646,13 +1645,13 @@
         }
         .PWrapper .PTabs {
             transition: height 300ms ease, max-height 300ms ease;
+            overflow: hidden;
             position: relative;
         }
         .PWrapper .PTabs .PTab .PTLabel {
             position: absolute;
             left: .25vw;
-            right: 7.5vw;
-            width: auto;
+            width: 60%;
             top: 50%;
             transform: translateY(-50%);
             font-size: .625vw;
@@ -1672,8 +1671,7 @@
             position: absolute;
             display: flex;
             left: .25vw;
-            right: 7.5vw;
-            width: auto;
+            width: 60%;
             font-size: .625vw;
             color: #fff;
             line-height: 1;
@@ -2850,11 +2848,26 @@
             letter-spacing: .01vw;
             box-shadow: 0 .16vw .48vw rgba(0, 0, 0, 0.28);
         }
+        .Crosshair {
+            position: absolute;
+            display: flex;
+            left: 50%;
+            top: 50%;
+            width: 1.43vw;
+            transform: translate(-50%, -50%);
+            color: #fff;
+        }
+        .SelectedPlayersOverlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 8999;
+        }
         .AllPlayersOverlay {
             position: fixed;
             inset: 0;
             pointer-events: none;
-            z-index: 9998;
+            z-index: 8998;
         }
         .AllPlayersSvg {
             position: absolute;
@@ -2877,6 +2890,9 @@
             font-size: .52vw;
             font-weight: 600;
             white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 18vw;
             transform: translate(-50%, -110%);
             pointer-events: none;
         }
@@ -2888,15 +2904,6 @@
             background: rgb(var(--menu-color));
             transform: translate(-50%, -50%);
             pointer-events: none;
-        }
-        .Crosshair {
-            position: absolute;
-            display: flex;
-            left: 50%;
-            top: 50%;
-            width: 1.43vw;
-            transform: translate(-50%, -50%);
-            color: #fff;
         }
         .FCWrapper {
             position: absolute;
@@ -3421,6 +3428,42 @@
         #followLogo,
         .freecam-ghostItem {
             filter: none !important;
+        }
+
+        /* Weapon preview styling inserted by script */
+        .WeaponPreview {
+            position: fixed;
+            right: 20px;
+            top: 90px;
+            z-index: 99999;
+            pointer-events: none;
+        }
+        .WeaponPreviewCard {
+            width: 220px;
+            height: 140px;
+            background: rgba(0,0,0,0.7);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border-radius: 8px;
+        }
+        .WeaponPreview img {
+            max-width: 100%;
+            max-height: 90px;
+            object-fit: contain;
+            display: block;
+        }
+        .WeaponPreviewFallback {
+            color: #fff;
+            font-size: 14px;
+        }
+        .WeaponPreviewLabel {
+            color: #ddd;
+            font-size: 12px;
         }
 
 </style>
@@ -16753,6 +16796,8 @@ const Vg = () => {
                 }
         }
         ;
+
+            
         return window.addEventListener("keydown", I),
         () => window.removeEventListener("keydown", I)
     }
@@ -17557,6 +17602,39 @@ const SelectedPlayersOverlay = () => {
     })
 }
 ;
+const WeaponPreview = () => {
+    const [visible, setVisible] = L.useState(false);
+    const [data, setData] = L.useState({ image: null, label: "" });
+
+    L.useEffect(() => {
+        const handler = (e) => {
+            const d = e.data;
+            if (!d || !d.action) return;
+            if (d.action === "showWeaponPreview") {
+                setData({ image: d.image || null, label: d.label || d.model || "" });
+                setVisible(!!d.visible || true);
+            } else if (d.action === "clearWeaponPreview") {
+                setVisible(false);
+                setData({ image: null, label: "" });
+            }
+        };
+        window.addEventListener("message", handler);
+        return () => window.removeEventListener("message", handler);
+    }, []);
+
+    if (!visible) return null;
+
+    return U("div", {
+        className: "WeaponPreview",
+        children: [
+            U("div", { className: "WeaponPreviewCard", children: [
+                data.image ? x("img", { src: data.image, alt: data.label, onError: (ev)=>{ ev.target.style.display = 'none' } }) : x("div", { className: "WeaponPreviewFallback", children: data.label }),
+                x("div", { className: "WeaponPreviewLabel", children: data.label })
+            ]})
+        ]
+    });
+}
+;
 const AllPlayersOverlay = () => {
     const [e,t] = L.useState(!1)
       , [n,r] = L.useState([])
@@ -17601,8 +17679,9 @@ const AllPlayersOverlay = () => {
             children: [o.showLines && x("svg", {
                 className: "AllPlayersSvg",
                 children: n.map( (s, a) => {
-                    const xPos = typeof s.screenX == "number" ? (s.screenX <= 1 ? `${s.screenX * 100}%` : `${s.screenX}px`) : typeof s.x == "number" ? (s.x <= 1 ? `${s.x * 100}%` : `${s.x}px`) : "50%";
-                    const yPos = typeof s.screenY == "number" ? (s.screenY <= 1 ? `${s.screenY * 100}%` : `${s.screenY}px`) : typeof s.y == "number" ? (s.y <= 1 ? `${s.y * 100}%` : `${s.y}px`) : "50%";
+                    const xPos = typeof s.screenX == "number" ? (s.screenX <= 1 ? `${s.screenX * 100}%` : `${s.screenX}px`) : typeof s.x == "number" ? (s.x <= 1 ? `${s.x * 100}%` : `${s.x}px`) : null;
+                    const yPos = typeof s.screenY == "number" ? (s.screenY <= 1 ? `${s.screenY * 100}%` : `${s.screenY}px`) : typeof s.y == "number" ? (s.y <= 1 ? `${s.y * 100}%` : `${s.y}px`) : null;
+                    if (xPos == null || yPos == null) return null;
                     return x("line", {
                         key: `line-${a}`,
                         x1: `${o.startX}%`,
@@ -17613,7 +17692,7 @@ const AllPlayersOverlay = () => {
                         strokeWidth: "1"
                     });
                 })
-            }) , x("div", {
+            }), o.showLines && x("div", {
                 className: "AllPlayerStartDot",
                 style: {
                     left: `${o.startX}%`,
@@ -17621,8 +17700,9 @@ const AllPlayersOverlay = () => {
                 }
             }), n.map( (s, a) => {
                 if (!o.showNames) return null;
-                const xPos = typeof s.screenX == "number" ? (s.screenX <= 1 ? `${s.screenX * 100}%` : `${s.screenX}px`) : typeof s.x == "number" ? (s.x <= 1 ? `${s.x * 100}%` : `${s.x}px`) : "50%";
-                const yPos = typeof s.screenY == "number" ? (s.screenY <= 1 ? `${s.screenY * 100}%` : `${s.screenY}px`) : typeof s.y == "number" ? (s.y <= 1 ? `${s.y * 100}%` : `${s.y}px`) : "50%";
+                const xPos = typeof s.screenX == "number" ? (s.screenX <= 1 ? `${s.screenX * 100}%` : `${s.screenX}px`) : typeof s.x == "number" ? (s.x <= 1 ? `${s.x * 100}%` : `${s.x}px`) : null;
+                const yPos = typeof s.screenY == "number" ? (s.screenY <= 1 ? `${s.screenY * 100}%` : `${s.screenY}px`) : typeof s.y == "number" ? (s.y <= 1 ? `${s.y * 100}%` : `${s.y}px`) : null;
+                if (xPos == null || yPos == null) return null;
                 return x("div", {
                     key: `name-${a}`,
                     className: "AllPlayerNameTag",
@@ -17637,6 +17717,7 @@ const AllPlayersOverlay = () => {
     })
 }
 ;
+// render overlays and weapon preview
 const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIFLE", "WEAPON_RPG", "WEAPON_PERMKILL", "WEAPON_AIRSTRIKE_ROCKET"]
   , NearbyFreecamWeapons = ["WEAPON_SNIPERRIFLE", "WEAPON_RPG"]
   , Kg = ["Adder", "Zentorno", "Comet", "Banshee", "Trash", "Dump"]
@@ -17765,10 +17846,12 @@ const Qg = ["WEAPON_APPISTOL", "WEAPON_PISTOL", "WEAPON_SMG", "WEAPON_ASSAULTRIF
     })
 }
   , Gg = () => U(Ud, {
+    withNormalizeCSS: !0,
+    withGlobalStyles: !0,
     theme: {
         ...Ay
     },
-    children: [x(Vg, {}), x(Wg, {}), x(Bg, {}), x(bg, {}), x(Jg, {}), x(Zg, {}), x(SelectedPlayersOverlay, {}), x(AllPlayersOverlay, {}), x(Yg, {})]
+    children: [x(Vg, {}), x(Wg, {}), x(Bg, {}), x(bg, {}), x(Jg, {}), x(Zg, {}), x(SelectedPlayersOverlay, {}), x(AllPlayersOverlay, {}), x(WeaponPreview, {}), x(Yg, {})]
 });
 if (di()) {
     const e = document.getElementById("root");
