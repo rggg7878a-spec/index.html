@@ -17606,12 +17606,86 @@ const WeaponPreview = () => {
     const [visible, setVisible] = L.useState(false);
     const [data, setData] = L.useState({ image: null, label: "" });
 
+const WeaponImageMap = {
+"weapon_unarmed": "https://wiki.rage.mp/w/images/b/b7/Fist-icon.png",
+"weapon_knife": "https://wiki.rage.mp/w/images/8/8c/Knife-icon.png",
+"weapon_dagger": "https://wiki.rage.mp/w/images/f/f5/Antique-cavalry-dagger-icon.png",
+"weapon_bat": "",
+"weapon_bottle": "",
+"weapon_crowbar": "",
+"weapon_golfclub": "",
+"weapon_hammer": "",
+"weapon_hatchet": "",
+"weapon_machete": "",
+"weapon_switchblade": "",
+"weapon_nightstick": "",
+"weapon_wrench": "",
+"weapon_pistol": "",
+"weapon_pistol_mk2": "",
+"weapon_combatpistol": "",
+"weapon_appistol": "",
+"weapon_stungun": "",
+"weapon_pistol50": "",
+"weapon_snspistol": "",
+"weapon_heavypistol": "",
+"weapon_vintagepistol": "",
+"weapon_flaregun": "",
+"weapon_microsmg": "",
+"weapon_smg": "",
+"weapon_smg_mk2": "",
+"weapon_assaultsmg": "",
+"weapon_machinepistol": "",
+"weapon_minismg": "",
+"weapon_combatpdw": "",
+"weapon_assaultrifle": "",
+"weapon_assaultrifle_mk2": "",
+"weapon_carbinerifle": "",
+"weapon_carbinerifle_mk2": "",
+"weapon_advancedrifle": "",
+"weapon_specialcarbine": "",
+"weapon_bullpuprifle": "",
+"weapon_gusenberg": "",
+"weapon_compactrifle": "",
+"weapon_bullpuprifle_mk2": "",
+"weapon_marksmanrifle": "",
+"weapon_pumpshotgun": "",
+"weapon_pumpshotgun_mk2": "",
+"weapon_sawnoffshotgun": "",
+"weapon_assaultshotgun": "",
+"weapon_bullpupshotgun": "",
+"weapon_heavyshotgun": "",
+"weapon_autoshotgun": "",
+"weapon_sniperrifle": "",
+"weapon_heavysniper": "",
+"weapon_heavysniper_mk2": "",
+"weapon_marksmanrifle_mk2": "",
+"weapon_grenade": "",
+"weapon_stickybomb": "",
+"weapon_molotov": "",
+"weapon_pipebomb": "",
+"weapon_proxmine": "",
+"weapon_rpg": "",
+"weapon_grenadelauncher": "",
+"weapon_minigun": "",
+"weapon_firework": "",
+"weapon_mg": "",
+"weapon_combatmg": "",
+"weapon_railgun": "",
+"weapon_hominglauncher": "",
+"weapon_compactlauncher": "",
+"weapon_ball": "",
+"weapon_smokegrenade": "",
+"weapon_bzgas": "",
+"weapon_petrolcan": ""
+};
+
     L.useEffect(() => {
         const handler = (e) => {
             const d = e.data;
             if (!d || !d.action) return;
             if (d.action === "showWeaponPreview") {
-                setData({ image: d.image || null, label: d.label || d.model || "" });
+                const resolvedImage = d.image || (d.model ? WeaponImageMap[d.model] : null) || null;
+                setData({ image: resolvedImage, label: d.label || d.model || "" });
                 setVisible(!!d.visible || true);
             } else if (d.action === "clearWeaponPreview") {
                 setVisible(false);
