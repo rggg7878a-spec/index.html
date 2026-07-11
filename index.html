@@ -1606,7 +1606,8 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 0;
             backdrop-filter: blur(18px);
-            overflow-y: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
             transition: height 220ms ease, max-height 220ms ease, background-color 220ms ease;
         }
         .PWrapper .PTabs .PTab {
@@ -1645,13 +1646,13 @@
         }
         .PWrapper .PTabs {
             transition: height 300ms ease, max-height 300ms ease;
-            overflow: hidden;
             position: relative;
         }
         .PWrapper .PTabs .PTab .PTLabel {
             position: absolute;
             left: .25vw;
-            width: 60%;
+            right: 7.5vw;
+            width: auto;
             top: 50%;
             transform: translateY(-50%);
             font-size: .625vw;
@@ -1671,7 +1672,8 @@
             position: absolute;
             display: flex;
             left: .25vw;
-            width: 60%;
+            right: 7.5vw;
+            width: auto;
             font-size: .625vw;
             color: #fff;
             line-height: 1;
